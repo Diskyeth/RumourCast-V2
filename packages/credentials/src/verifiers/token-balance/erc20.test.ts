@@ -8,7 +8,7 @@ const signature =
   '0x07813c43e688a5c60fb72c25eb0ad37ac2330db5091dc768424593e1d1fa944c44bc32d03b32e5ae83eaca369c8655a06641fa643c5766670d77c01b4075ddde1b'
 const messageHash = hashMessage('test')
 const address = '0xe4dd432fe405891ab0118760e3116e371188a1eb'
-const tokenAddress = '0x0db510e79909666d6dec7f5e49370838c16d950f'
+const tokenAddress = '0x1CEcCbE4d3a19cB62DbBd09756A52Cfe5394Fab8'
 
 async function main() {
   const verifier = manager.getVerifier(CredentialType.ERC20_BALANCE)
