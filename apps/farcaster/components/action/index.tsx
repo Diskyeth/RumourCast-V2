@@ -27,7 +27,6 @@ export default function ActionComponent({
   const DELETE_POST = BigInt(DELETE_AMOUNT) / BigInt(10 ** 18)
 
   // Default values for post variant
-  const defaultTitle = 'Post anonymously'
   const defaultDescription =
     "Rumours are made anonymous using zk proofs. Do not post porn, doxes, shills, or threats. This is for sharing rumours and gossip - not enabling bad behaviour."
   const defaultRequirements = [
@@ -39,13 +38,15 @@ export default function ActionComponent({
     { amount: Number(DELETE_POST), label: 'Delete posts' },
   ]
 
-  const displayTitle = title || defaultTitle
   const displayDescription = description || defaultDescription
   const displayRequirements = requirements || defaultRequirements
 
   return (
-    <Alert className="flex flex-col gap-4 bg-zinc-900 border border-zinc-700">
-      <AlertTitle className="font-semibold text-xl">{displayTitle}</AlertTitle>
+    <Alert className="flex flex-col px-6 py-8 gap-4 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-2xl border-none shadow-lg shadow-black-500/50">
+      <AlertTitle className="font-semibold text-3xl">
+        <span className="block">I heard a rumour... 👀</span>
+        <span className="block">Gossip on Farcaster</span>
+      </AlertTitle>
       <AlertDescription>
         <p className="text-zinc-400">{displayDescription}</p>
         <br />

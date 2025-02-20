@@ -39,7 +39,6 @@ export default function ActionComponent({
     { amount: Number(DELETE_POST), label: 'Delete Rumours' },
   ]
 
-  const displayTitle = title || defaultTitle
   const displayDescription = description || defaultDescription
   const displayRequirements = requirements || defaultRequirements
 
