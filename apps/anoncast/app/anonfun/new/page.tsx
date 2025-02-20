@@ -3,7 +3,7 @@
 import ActionComponent from '@/components/action'
 import { PostFeed, PromotedFeed } from '@/components/post-feed'
 import { CreatePostProvider, useCreatePost } from '@/components/create-post/context'
-import { NavTabs } from '@/components/nav-tabs'
+
 
 export default function Home() {
   return (

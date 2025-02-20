@@ -27,7 +27,6 @@ export default function ActionComponent({
   const DELETE_POST = BigInt(DELETE_AMOUNT) / BigInt(10 ** 18)
 
   // Default values for post variant
-  const defaultTitle = 'Post anonymously'
   const defaultDescription =
     "Rumours are made anonymous using zk proofs. Do not post porn, doxes, shills, or threats. This is for sharing rumours and gossip - not enabling bad behaviour."
   const defaultRequirements = [
