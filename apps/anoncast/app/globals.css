@@ -95,3 +95,8 @@ body {
     background-clip: content-box, border-box;
   }
 }
+@layer components {
+  .button-secondary {
+    @apply bg-[hsl(var(--button-secondary))] text-[hsl(var(--button-secondary-foreground))] hover:scale-110 focus:ring-2 focus:ring-[hsl(var(--button-secondary))]/50 transition-all duration-200 transform-gpu;
+  }
+}

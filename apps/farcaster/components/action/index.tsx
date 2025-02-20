@@ -29,7 +29,7 @@ export default function ActionComponent({
   // Default values for post variant
   const defaultTitle = 'Post anonymously'
   const defaultDescription =
-    "Posts are made anonymous using zk proofs. Due to the complex calculations required, it could take up to a few minutes. Do not post porn, doxes, shills, or threats. This is not about censorship resistance - it's about great anonymous posts."
+    "Rumours are made anonymous using zk proofs. Do not post porn, doxes, shills, or threats. This is for sharing rumours and gossip - not enabling bad behaviour."
   const defaultRequirements = [
     { amount: Number(FARCASTER_POST), label: 'Post to @anoncast' },
     {

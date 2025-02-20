@@ -95,7 +95,7 @@ export function CreatePost({ variant }: { variant: 'post' | 'launch' }) {
         className="h-32 p-3 resize-none font-medium !text-base placeholder:text-zinc-400 bg-zinc-950 border border-zinc-700"
         placeholder={
           variant === 'post'
-            ? "What's happening, anon?"
+            ? 'I heard a rumour...'
             : 'Hey @clanker please launch a coin called "Hello" with the ticker $HI! I want this image...'
         }
       />
@@ -256,7 +256,7 @@ function UploadImage() {
         tooltip="Upload image"
         onClick={() => fileInputRef.current?.click()}
         disabled={loading || !!image || embedCount >= MAX_EMBEDS}
-        className="w-full sm:w-auto min-w-10 bg-zinc-950 border border-zinc-700"
+        className="w-full sm:w-auto min-w-10 bg-zinc-950"
       >
         <input
           ref={fileInputRef}
