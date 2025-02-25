@@ -16,9 +16,9 @@ export const LAUNCH_AMOUNT = '2000000000000000000000000'
 export const PROMOTE_AMOUNT = '2000000000000000000000000'
 export const DELETE_AMOUNT = '2000000000000000000000000'
 export const FARC_USERNAME = 'anoncast'
-export const FID = 883287
+export const FID = 884230
 export const BEST_OF_FID = 884230
-export const LAUNCH_FID = 883713
+export const LAUNCH_FID = 884230
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
