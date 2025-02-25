@@ -22,7 +22,7 @@ export class AnonWorldSDK extends Api {
   private erc20Balance!: ERC20Balance
 
   constructor(apiUrl?: string) {
-    super(apiUrl || 'https://api.anon.world')
+    super(apiUrl || 'https://rumourcast-v2-rumour-testing.up.railway.app')
   }
 
   async instantiate() {
