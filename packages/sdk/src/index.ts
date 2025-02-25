@@ -45,7 +45,7 @@ export class AnonWorldSDK {
   private hasher!: (a: string, b: string) => string
 
   constructor(apiUrl?: string) {
-    this.api = new Api(apiUrl || 'https://api.anon.world')
+    this.api = new Api(apiUrl || 'https://rumourcast-v2-rumour-testing.up.railway.app')
   }
 
   async instantiate() {
