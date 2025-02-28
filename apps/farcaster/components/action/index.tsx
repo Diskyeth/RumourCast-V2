@@ -10,7 +10,6 @@ import { Separator } from '../ui/separator'
 
 export default function ActionComponent({
   variant = 'post',
-  title,
   description,
   requirements,
 }: {
