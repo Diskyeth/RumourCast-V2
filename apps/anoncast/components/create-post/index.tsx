@@ -25,8 +25,9 @@ import { useSDK } from '@anonworld/react'
 import { CredentialsSelect } from '../credentials-select'
 
 const MAX_EMBEDS = 2
+const baseText = "I heard a rumour... ";
 
-export function CreatePost({ variant }: { variant: 'post' | 'launch' }) {
+export function CreatePost() {
   const { sdk } = useSDK()
   const {
     text,
@@ -44,84 +45,69 @@ export function CreatePost({ variant }: { variant: 'post' | 'launch' }) {
 
   const length = new Blob([text ?? '']).size
 
+  // Handle text change & auto-detect links
   const handleSetText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (new Blob([e.target.value]).size > 320) return
-    setText(e.target.value)
+    const newValue = e.target.value ?? ""
+    if (new Blob([newValue]).size > 320) return
+
+    setText((prev) => {
+      if (!newValue.startsWith(baseText)) {
+        return baseText + newValue.slice(baseText.length)
+      }
+      return newValue
+    })
 
     // Check for Warpcast URLs
     const warpcastRegex = /https:\/\/warpcast\.com\/[^/]+\/0x[a-fA-F0-9]+/g
-    const warpcastMatches = Array.from(e.target.value.matchAll(warpcastRegex) || []).map(
-      (match) => match[0]
-    )
+    const warpcastMatches = [...newValue.matchAll(warpcastRegex)].map(match => match[0])
 
     // Check for Twitter URLs
     const twitterRegex = /https:\/\/(twitter\.com|x\.com)\/[^/]+\/status\/\d+/g
-    const twitterMatches = Array.from(e.target.value.matchAll(twitterRegex) || []).map(
-      (match) => match[0]
-    )
+    const twitterMatches = [...newValue.matchAll(twitterRegex)].map(match => match[0])
 
-    // Try to set quote from Warpcast URLs
+    // Handle Warpcast URLs
     if (warpcastMatches.length > 0) {
-      const currentHash = quote?.hash
-      const urlHash = warpcastMatches[0].split('/').pop() // Get hash from URL
-
-      if (!quote || currentHash !== urlHash) {
-        // If no quote exists or URL hash changed, try to set a new one
+      const urlHash = warpcastMatches[0].split('/').pop()
+      if (!quote || quote.hash !== urlHash) {
         sdk.getFarcasterCast(warpcastMatches[0]).then((data) => {
-          if (data.data) {
-            setQuote(data.data)
-          }
+          if (data.data) setQuote(data.data)
         })
       }
     }
-    // Handle Twitter URLs
-    if (twitterMatches.length > 0) {
-      const currentEmbed = embed
-      const twitterUrl = twitterMatches[0]
 
-      if (!currentEmbed || currentEmbed !== twitterUrl) {
-        setEmbed(twitterUrl)
-      }
+    // Handle Twitter URLs
+    if (twitterMatches.length > 0 && (!embed || embed !== twitterMatches[0])) {
+      setEmbed(twitterMatches[0])
     }
   }
-  const baseText = "I heard a rumour... ";
 
   return (
     <div className="flex flex-col gap-4">
       <RemoveableParent />
       <Credential />
-     
-<Textarea
-  value={text ?? baseText}
-  onChange={(e) => {
-    const newValue = e.target.value ?? "";
 
-    setText((prev) => {
-      if (!newValue.startsWith(baseText)) {
-        return baseText + newValue.slice(baseText.length);
-      }
-      return newValue;
-    });
-  }}
-  className="h-32 p-3 resize-none font-medium !text-base placeholder:text-zinc-400 bg-zinc-950 border border-zinc-700"
-  onKeyDown={(e) => {
-    if (
-      e.target.selectionStart < baseText.length &&
-      ["Backspace", "Delete"].includes(e.key)
-    ) {
-      e.preventDefault();
-    }
-  }}
-  onFocus={(e) => {
-    if (!text || !text.startsWith(baseText)) {
-      setText(baseText);
-    }
+      <Textarea
+        value={text ?? baseText}
+        onChange={handleSetText}
+        className="h-32 p-3 resize-none font-medium !text-base placeholder:text-zinc-400 bg-zinc-950 border border-zinc-700"
+        onKeyDown={(e) => {
+          if (
+            e.target.selectionStart < baseText.length &&
+            ["Backspace", "Delete"].includes(e.key)
+          ) {
+            e.preventDefault()
+          }
+        }}
+        onFocus={(e) => {
+          if (!text || !text.startsWith(baseText)) {
+            setText(baseText)
+          }
 
-    requestAnimationFrame(() => {
-      e.target.setSelectionRange(baseText.length, baseText.length);
-    });
-  }}
-/>
+          requestAnimationFrame(() => {
+            e.target.setSelectionRange(baseText.length, baseText.length)
+          })
+        }}
+      />
       <RevealPhrase />
       <RemoveableImage />
       <RemoveableEmbed />
