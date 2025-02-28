@@ -109,7 +109,7 @@ export function CredentialsSelect({
         open={open}
         setOpen={setOpen}
         onVerify={onSelect}
-        minBalance={5000}
+        minBalance={100000000}
       />
     </>
   )
@@ -189,7 +189,7 @@ export function VerifyCredential({
             onValueChange={([balance]) => setBalance(balance)}
             min={minBalance}
             max={maxBalance}
-            step={5000}
+            step={100000000}
           />
           <div className="flex flex-row items-center justify-between">
             <p className="text-sm text-zinc-400">{minBalance.toLocaleString()}</p>
