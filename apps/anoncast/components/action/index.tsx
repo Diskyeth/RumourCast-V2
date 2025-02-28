@@ -1,11 +1,12 @@
 import { useBalance } from '@/lib/hooks/use-balance'
 import { Alert, AlertDescription, AlertTitle } from '../ui/alert'
-import { CircleCheckIcon, ExternalLink } from 'lucide-react'
+import { CircleCheckIcon } from 'lucide-react'
 import { CircleXIcon } from 'lucide-react'
 import { CircleMinusIcon } from 'lucide-react'
 import { CreatePost } from '../create-post'
 import { POST_AMOUNT, PROMOTE_AMOUNT, DELETE_AMOUNT } from '@/lib/utils'
 import { useAccount } from 'wagmi'
+import { Separator } from '../ui/separator'
 
 export default function ActionComponent({
   variant = 'post',
@@ -60,81 +61,47 @@ export default function ActionComponent({
             />
           ))}
         </ul>
-        </AlertDescription>
+      </AlertDescription>
 
-<div className="flex flex-row gap-2 justify-between ">
-  <div className="flex flex-row gap-4">
-    <div className="flex flex-row gap-2">
-      <a
-        href="https://x.com/Rumour_Cast"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-sm button-secondary px-3 py-3 rounded-full font-medium"
-      >
-        <span className="hidden">X/Twitter</span>
-        <img src="/x.svg" alt="X/Twitter" className="w-5 h-5 invert" />
-      </a>
+      <div className="flex flex-row gap-2 justify-between ">
+        <div className="flex flex-row gap-4">
+          <a
+            href="https://x.com/anoncast_"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm decoration-dotted underline font-medium"
+          >
+            <span className="hidden sm:inline">X/Twitter</span>
+            <img src="/x.svg" alt="X/Twitter" className="w-4 h-4 sm:hidden invert" />
+          </a>
 
-      <a
-        href="https://warpcast.com/rumour"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-sm button-secondary px-3 py-3 rounded-full font-medium"
-      >
-        <span className="hidden">Farcaster</span>
-        <img src="/farcaster.svg" alt="Farcaster" className="w-5 h-5 invert" />
-      </a>
-    </div>
-  </div>
-  <div className="flex flex-row gap-2 justify-end">
-    <a
-      href="https://dexscreener.com/base/0x1CEcCbE4d3a19cB62DbBd09756A52Cfe5394Fab8"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-sm button-secondary px-3 py-3 rounded-full font-medium"
-    >
-      DEX
-    </a>
-    <a
-      href="https://app.uniswap.org/swap?outputCurrency=0x1CEcCbE4d3a19cB62DbBd09756A52Cfe5394Fab8&chain=base"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-sm button-secondary px-3 py-3 rounded-full font-medium"
-    >
-      Uniswap
-    </a>
-    <a
-      href="https://github.com/leovido/rumourcast"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-sm button-secondary px-3 py-3 rounded-full font-medium"
-    >
-      Github
-    </a>
-  </div>
-</div>
-{address && !isLoading ? (
-  FARCASTER_POST > BALANCE ? (
-    <a
-      href={`https://app.uniswap.org/swap?exactAmount=10000000&exactField=output&inputCurrency=ETH&outputCurrency=0x1CEcCbE4d3a19cB62DbBd09756A52Cfe5394Fab8&chain=base`}
-      target="_blank"
-      rel="noreferrer"
-    >
-      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded flex flex-row items-center justify-between gap-2">
-        <p className="font-bold flex flex-row items-center gap-2">
-          {`You need 10,000,000 $Rumoue to post. Click here to buy.`}
-          <ExternalLink size={16} />
-        </p>
+          <a
+            href="https://warpcast.com/anoncast"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm decoration-dotted underline font-medium"
+          >
+            <span className="hidden sm:inline">Farcaster</span>
+            <img
+              src="/farcaster.svg"
+              alt="Farcaster"
+              className="w-4 h-4 sm:hidden invert"
+            />
+          </a>
+          <a
+            href="https://github.com/Slokh/anoncast"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm decoration-dotted underline font-medium"
+          >
+            Github
+          </a>
+        </div>
       </div>
-    </a>
-  ) : (
-    <CreatePost variant={variant} />
+      <Separator />
+      <CreatePost variant={variant} />
+    </Alert>
   )
-) : (
-  <></>
-)}
-</Alert>
-)
 }
 
 function TokenRequirement({
