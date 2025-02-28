@@ -5,6 +5,8 @@ import { Toaster } from '@/components/ui/toaster'
 import { GeistSans } from 'geist/font/sans'
 import { ConnectButton } from '@/components/connect-button'
 import { Logo } from '@/components/logo'
+import BackToTopButton from '@/components/ui/back-to-top-button'
+import HamburgerMenuButton from '@/components/ui/hamburger-menu-button'
 
 export const metadata: Metadata = {
   title: 'RumourCast',
@@ -54,6 +56,7 @@ export default function RootLayout({
               <Logo />
               <div className="flex items-center gap-4">
                 <ConnectButton />
+                <HamburgerMenuButton />
               </div>
             </div>
           </header>
@@ -64,6 +67,7 @@ export default function RootLayout({
           </div>
         </Providers>
         <Toaster />
+        <BackToTopButton />
       </body>
     </html>
   )

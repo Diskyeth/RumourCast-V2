@@ -79,10 +79,12 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     background: linear-gradient(to bottom, #070707, #201424, #41214D) !important;
     @apply text-foreground;
   }
+
   .gradient-border-wrapper {
     padding: 1px;
     background-image: linear-gradient(
@@ -94,10 +96,11 @@ body {
         hsl(var(--primary)),
         hsl(var(--secondary))
       ) !important;
-    background-origin: border-box;
-    background-clip: content-box, border-box;
+    background-origin: border-box !important;
+    background-clip: content-box, border-box !important;
   }
 }
+
 
 @layer components {
   .button-secondary {

@@ -37,7 +37,7 @@ function Balance() {
 
   return (
     <div className="flex items-center">
-      <span className="text-md font-bold text-white md:inline hidden pl-3 pr-2">
+      <span className="text-mflex flex-row rounded-full overflow-hidden items-center hover:scale-105 transition-all duration-300 gradient-border-wrapper sm:space-x-2 space-x-1 h-14d font-bold text-white md:inline hidden pl-3 pr-2">
         {`${formatNumber(amount)} RUMOUR`}
       </span>
       <span
