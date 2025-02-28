@@ -5,7 +5,7 @@
     "signature": "MHg5OTI5MGE1MDRlOGIwZmViNGExZjBhYzg0YTc3ZWVmOTI3YmE5OGYwZmM0MTQ1ZTFmMWYxMDllNGE5MmE0M2Q3MWUyOTk2NGViYjAwMWE4NWZjZGQzN2I0Y2JiMDNiYTAyYmMwMDk0OTVjYjUzOWFkOTg4OGZjODYzYzFlOWVjNDFj"
   },
   "frame": {
-    "name": "anoncast",
+    "name": "RumourCast",
     "version": "0.0.1",
     "iconUrl": "https://anoncast.org/anon.png",
     "homeUrl": "https://frame.rumourcast.fun/",

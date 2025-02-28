@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'RumourCast',
   description: 'Post anonymously to Farcaster.',
   openGraph: {
-    title: 'anoncast',
+    title: 'RumourCast',
     description: 'Post anonymously to Farcaster.',
     images: ['/anon.png'],
   },
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
       version: 'next',
       imageUrl: 'https://anoncast.org/banner.png',
       button: {
-        title: 'Post anonymously',
+        title: 'Spread Rumours',
         action: {
           type: 'launch_frame',
           name: 'RumourCast',
