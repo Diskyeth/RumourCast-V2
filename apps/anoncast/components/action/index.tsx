@@ -61,40 +61,56 @@ export default function ActionComponent({
             />
           ))}
         </ul>
-      </AlertDescription>
+        </AlertDescription>
 
-      <div className="flex flex-row gap-2 justify-between ">
-        <div className="flex flex-row gap-4">
-          <a
-            href="https://x.com/anoncast_"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm decoration-dotted underline font-medium"
-          >
-            <span className="hidden sm:inline">X/Twitter</span>
-            <img src="/x.svg" alt="X/Twitter" className="w-4 h-4 sm:hidden invert" />
-          </a>
+<div className="flex flex-row gap-2 justify-between ">
+  <div className="flex flex-row gap-4">
+    <div className="flex flex-row gap-2">
+      <a
+        href="https://x.com/Rumour_Cast"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-sm button-secondary px-3 py-3 rounded-full font-medium"
+      >
+        <span className="hidden">X/Twitter</span>
+        <img src="/x.svg" alt="X/Twitter" className="w-5 h-5 invert" />
+      </a>
 
-          <a
-            href="https://warpcast.com/anoncast"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm decoration-dotted underline font-medium"
-          >
-            <span className="hidden sm:inline">Farcaster</span>
-            <img
-              src="/farcaster.svg"
-              alt="Farcaster"
-              className="w-4 h-4 sm:hidden invert"
-            />
-          </a>
-          <a
-            href="https://github.com/Slokh/anoncast"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm decoration-dotted underline font-medium"
-          >
-            Github
+      <a
+        href="https://warpcast.com/rumour"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-sm button-secondary px-3 py-3 rounded-full font-medium"
+      >
+        <span className="hidden">Farcaster</span>
+        <img src="/farcaster.svg" alt="Farcaster" className="w-5 h-5 invert" />
+      </a>
+    </div>
+  </div>
+  <div className="flex flex-row gap-2 justify-end">
+    <a
+      href="https://dexscreener.com/base/0x1CEcCbE4d3a19cB62DbBd09756A52Cfe5394Fab8"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-sm button-secondary px-3 py-3 rounded-full font-medium"
+    >
+      DEX
+    </a>
+    <a
+      href="https://app.uniswap.org/swap?outputCurrency=0x1CEcCbE4d3a19cB62DbBd09756A52Cfe5394Fab8&chain=base"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-sm button-secondary px-3 py-3 rounded-full font-medium"
+    >
+      Uniswap
+    </a>
+    <a
+      href="https://github.com/leovido/rumourcast"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-sm button-secondary px-3 py-3 rounded-full font-medium"
+    >
+      Github
           </a>
         </div>
       </div>
