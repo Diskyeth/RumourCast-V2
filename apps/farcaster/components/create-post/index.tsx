@@ -90,15 +90,39 @@ export function CreatePost({ variant }: { variant: 'post' | 'launch' }) {
       <RemoveableParent />
       <Credential />
       <Textarea
-        value={text ?? ''}
-        onChange={handleSetText}
-        className="h-32 p-3 resize-none font-medium !text-base placeholder:text-zinc-400 bg-zinc-950 border border-zinc-700"
-        placeholder={
-          variant === 'post'
-            ? "What's happening, anon?"
-            : 'Hey @clanker please launch a coin called "Hello" with the ticker $HI! I want this image...'
-        }
-      />
+  value={text ?? "I heard a rumour... "}
+  onChange={(e) => {
+    const baseText = "I heard a rumour... ";
+    const newValue = e.target.value ?? "";
+
+    if (!newValue.startsWith(baseText)) {
+      setText(baseText + newValue.slice(baseText.length));
+    } else {
+      setText(newValue);
+    }
+  }}
+  className="h-32 p-3 resize-none font-medium !text-base placeholder:text-zinc-400 bg-zinc-950 border border-zinc-700"
+  onKeyDown={(e) => {
+    const baseText = "I heard a rumour... ";
+    
+    // Prevent editing within the base text
+    if (
+      e.target.selectionStart < baseText.length &&
+      (e.key === "Backspace" || e.key === "Delete" || e.key.length === 1)
+    ) {
+      e.preventDefault();
+    }
+  }}
+  onFocus={(e) => {
+    const baseText = "I heard a rumour... ";
+
+    // Ensure the text is always set and move cursor after base text
+    if (!text || !text.startsWith(baseText)) {
+      setText(baseText);
+    }
+    e.target.setSelectionRange(baseText.length, baseText.length);
+  }}
+/>
       <RevealPhrase />
       <RemoveableImage />
       <RemoveableEmbed />
@@ -124,7 +148,7 @@ export function CreatePost({ variant }: { variant: 'post' | 'launch' }) {
                 <p>Generating proof</p>
               </div>
             ) : (
-              'Post anonymously'
+              'Spread Rumours'
             )}
           </Button>
         </div>
@@ -705,7 +729,7 @@ function Credential() {
           Post Credential <span className="text-red-500">*</span>
         </span>
         <span className="text-sm text-zinc-400">
-          @anoncast requires a verified credential for at least 5,000 $ANON.
+          @RumourCast requires a verified credential for at least 100M $Rumour.
         </span>
       </div>
       <CredentialsSelect selected={credential} onSelect={setCredential} />
