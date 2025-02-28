@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Spread Rumours',
     start_url: '/',
     display: 'standalone',
-    background_color: '#0000000',
-    theme_color: '#000000',
+    background_color: '#201424',
+    theme_color: '#201424',
     icons: [
       {
         src: '/icons/web-app-manifest-192x192.png',

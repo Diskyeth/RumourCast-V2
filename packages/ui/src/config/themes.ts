@@ -132,7 +132,7 @@ const color = {
   white10: 'hsl(0, 0%, 50.3%)',
   white11: 'hsl(0, 0%, 42.5%)',
   white12: 'hsl(0, 0%, 9.0%)',
-  black1: '#050505',
+  black1: '#201424',
   black2: '#151515',
   black3: '#191919',
   black4: '#232323',
