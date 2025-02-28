@@ -137,13 +137,13 @@ export function PostDisplay({
   const sanitizedText = cleanText(cast.text)
 
   return (
-    <div className="relative [overflow-wrap:anywhere] rounded-xl overflow-hidden gradient-border-wrapper flex bg-gradient-to-br from-primary/20 to-secondary/20 border border-primary">
-      <div className="flex flex-row gap-4  p-4 sm:p-6  ">
-        <div className="flex flex-col gap-2 w-full">
-          <div className="flex flex-row gap-4 justify-between">
-            <div className="flex flex-row items-center">
-              <div className="flex flex-row items-center gap-2">
-                <div className="text-sm font-medium text-zinc-400">
+    <div className="relative [overflow-wrap:anywhere] border border-[#C848FF] rounded-2xl overflow-hidden">
+    <div className="flex flex-row gap-4  p-4 sm:p-6  ">
+      <div className="flex flex-col gap-2 w-full">
+        <div className="flex flex-row gap-4 justify-between">
+          <div className="flex flex-row items-center">
+            <div className="flex flex-row items-center gap-2">
+              <div className="text-sm font-medium text-zinc-400">
                   {timeAgo(cast.timestamp)}
                 </div>
                 {cast.credentials.map((c) => {
@@ -282,17 +282,25 @@ export function PostDisplay({
             >
               {address && (
                 <p
-                  className="text-sm text-foreground underline decoration-dotted font-semibold cursor-pointer hover:text-zinc-400"
-                  onClick={quote}
-                >
+                className="text-sm button-secondary rounded-full font-semibold cursor-pointer hover:text-zinc-400"
+                style={{
+                  backgroundColor: 'rgba(124, 101, 193, 0.25)',
+                  padding: '0.5rem 1rem',
+                }}
+                onClick={quote}
+              >
                   Quote
                 </p>
               )}
               {address && (
                 <p
-                  className="text-sm text-foreground underline decoration-dotted font-semibold cursor-pointer hover:text-zinc-400"
-                  onClick={reply}
-                >
+                className="text-sm button-secondary rounded-full font-semibold cursor-pointer hover:text-zinc-400"
+                style={{
+                  backgroundColor: 'rgba(124, 101, 193, 0.25)',
+                  padding: '0.5rem 1rem',
+                }}
+                onClick={reply}
+              >
                   Reply
                 </p>
               )}
