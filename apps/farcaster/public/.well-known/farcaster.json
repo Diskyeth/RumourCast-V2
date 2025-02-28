@@ -8,7 +8,7 @@
     "name": "anoncast",
     "version": "0.0.1",
     "iconUrl": "https://anoncast.org/anon.png",
-    "homeUrl": "https://frame.anoncast.org/",
+    "homeUrl": "https://frame.rumourcast.fun//",
     "splashImageUrl": "https://anoncast.org/anon.png",
     "splashBackgroundColor": "#151515",
     "webhookUrl": "https://anoncast.org/webhook"
