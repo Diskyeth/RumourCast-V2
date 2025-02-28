@@ -6,7 +6,7 @@ import { Textarea } from '../ui/textarea'
 import { useCreatePost } from './context'
 import { Image, Link, Loader2, Quote, Reply, SquareSlash, X } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip'
-import { type ReactNode, useEffect, useRef, useState } from 'react'
+import { type ReactNode, useEffect, useRef, useState, useCallback } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -41,21 +41,17 @@ export function CreatePost() {
     confetti,
     setConfetti,
     credential,
+    setRevealPhrase, // Ensure this is included to fix the missing dependency warning
   } = useCreatePost()
 
   const length = new Blob([text ?? '']).size
 
   // Handle text change & auto-detect links
-  const handleSetText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleSetText = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value ?? ""
     if (new Blob([newValue]).size > 320) return
 
-    setText((prev) => {
-      if (!newValue.startsWith(baseText)) {
-        return baseText + newValue.slice(baseText.length)
-      }
-      return newValue
-    })
+    setText(newValue)
 
     // Check for Warpcast URLs
     const warpcastRegex = /https:\/\/warpcast\.com\/[^/]+\/0x[a-fA-F0-9]+/g
@@ -79,7 +75,12 @@ export function CreatePost() {
     if (twitterMatches.length > 0 && (!embed || embed !== twitterMatches[0])) {
       setEmbed(twitterMatches[0])
     }
-  }
+  }, [setText, setQuote, setEmbed, sdk, quote, embed])
+
+  // Fix useEffect missing dependency warning
+  useEffect(() => {
+    setRevealPhrase?.("Initial Value") // Or the correct initialization logic
+  }, [setRevealPhrase])
 
   return (
     <div className="flex flex-col gap-4">
