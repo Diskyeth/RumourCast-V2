@@ -2,9 +2,9 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'anoncast',
-    short_name: 'anoncast',
-    description: 'Post anonymously via zk proofs.',
+    name: 'RumourCast',
+    short_name: 'RumoueCast',
+    description: 'Spread Rumours',
     start_url: '/',
     display: 'standalone',
     background_color: '#0000000',
