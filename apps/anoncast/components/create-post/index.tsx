@@ -134,7 +134,7 @@ export function CreatePost() {
                 <p>Generating proof</p>
               </div>
             ) : (
-              'Post anonymously'
+              'Spread Rumours'
             )}
           </Button>
         </div>
