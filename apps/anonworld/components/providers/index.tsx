@@ -14,7 +14,7 @@ import { FramesProvider } from './frames'
 const config = getDefaultConfig({
   ...viemConfig,
   appName: 'RumourCast',
-  projectId: 'c615d5a18982cf9eb69f78706b187884',
+  projectId: '450c27e475631614e75d3e992ea6cd69',
   ssr: true,
 })
 

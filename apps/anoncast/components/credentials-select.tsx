@@ -109,7 +109,7 @@ export function CredentialsSelect({
         open={open}
         setOpen={setOpen}
         onVerify={onSelect}
-        minBalance={5000}
+        minBalance={100000000}
       />
     </>
   )
@@ -175,8 +175,7 @@ export function VerifyCredential({
           <AlertDialogTitle>Add $RUMOUR credential</AlertDialogTitle>
           <AlertDialogDescription>
             Credentials anonymously verify your onchain balance and add trusted tags to
-            your posts. For now, we only support $RUMOUR - 5K ANON to post, 2M $RUMOUR to
-            promote.
+            your posts.
             <br />
             <br />
             Important: While you can verify any balance amount, please note that higher
@@ -189,7 +188,7 @@ export function VerifyCredential({
             onValueChange={([balance]) => setBalance(balance)}
             min={minBalance}
             max={maxBalance}
-            step={5000}
+            step={100000}
           />
           <div className="flex flex-row items-center justify-between">
             <p className="text-sm text-zinc-400">{minBalance.toLocaleString()}</p>
@@ -197,7 +196,7 @@ export function VerifyCredential({
           </div>
         </div>
         <div className="flex flex-row gap-2 items-center mt-2">
-          <span className="text-sm whitespace-nowrap">$ANON</span>
+          <span className="text-sm whitespace-nowrap">$RUMOUR</span>
           <Input
             className="w-32"
             value={balance.toString()}

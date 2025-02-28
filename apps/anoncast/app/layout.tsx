@@ -8,24 +8,24 @@ import { Logo } from '@/components/logo'
 
 export const metadata: Metadata = {
   title: 'RumourCast',
-  description: 'Post anonymously to Farcaster.',
+  description: 'Spread rumours on Farcaster.',
   openGraph: {
     title: 'RumourCast',
-    description: 'Post anonymously to Farcaster.',
-    images: ['/anon.png'],
+    description: 'Spread rumours on Farcaster.',
+    images: ['/rumour.png'],
   },
   other: {
     ['fc:frame']: JSON.stringify({
       version: 'next',
-      imageUrl: 'https://anoncast.org/banner.png',
+      imageUrl: 'https://rumourcast.fun/banner.png',
       button: {
         title: 'Spread Rumours',
         action: {
           type: 'launch_frame',
           name: 'RumourCast',
           url: 'https://frame.rumourcast.fun/',
-          splashImageUrl: 'https://anoncast.org/anon.png',
-          splashBackgroundColor: '#151515',
+          splashImageUrl: 'https://rumourcast.fun/rumour.png',
+          splashBackgroundColor: '#201424',
         },
       },
     }),
