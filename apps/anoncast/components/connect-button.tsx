@@ -39,7 +39,7 @@ export const ConnectButton = () => {
                 return (
                   <Button
                     onClick={openConnectModal}
-                    className="flex flex-row rounded-full overflow-hidden items-center hover:scale-105 transition-all duration-300 gradient-border-wrapper sm:space-x-2 space-x-1 h-14"
+                    className="font-bold text-md rounded-full hover:scale-105 transition-all duration-300 h-14"
                   >
                     Connect
                   </Button>
@@ -49,7 +49,7 @@ export const ConnectButton = () => {
                 return (
                   <Button
                     onClick={openChainModal}
-                    className="flex flex-row rounded-full overflow-hidden items-center hover:scale-105 transition-all duration-300 gradient-border-wrapper sm:space-x-2 space-x-1 h-14"
+                    className="font-bold text-md rounded-full hover:scale-105 transition-all duration-300"
                   >
                     Switch Network
                   </Button>
@@ -59,10 +59,13 @@ export const ConnectButton = () => {
                 <button
                   type="button"
                   onClick={openAccountModal}
-                  className="flex flex-row rounded-md overflow-hidden bg-white items-center hover:scale-105 transition-all duration-300"
+                  className="flex flex-row rounded-full overflow-hidden items-center hover:scale-105 transition-all duration-300 gradient-border-wrapper sm:space-x-2 space-x-1 h-14"
                 >
                   <Balance />
-                  <div className="text-md font-bold bg-gray-200 text-black rounded-md py-1.5 px-3 m-0.5">
+                  <div
+                    className="text-md font-bold text-primary rounded-full py-2 px-3 m-0.5 truncate"
+                    style={{ maxWidth: '85px' }}
+                  >
                     {account.displayName}
                   </div>
                 </button>
