@@ -172,10 +172,10 @@ export function VerifyCredential({
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogContent className="bg-black">
         <AlertDialogHeader>
-          <AlertDialogTitle>Add $ANON credential</AlertDialogTitle>
+          <AlertDialogTitle>Add $RUMOUR credential</AlertDialogTitle>
           <AlertDialogDescription>
             Credentials anonymously verify your onchain balance and add trusted tags to
-            your posts. For now, we only support $ANON - 5K ANON to post, 2M ANON to
+            your posts. For now, we only support $RUMOUR - 5K ANON to post, 2M $RUMOUR to
             promote.
             <br />
             <br />

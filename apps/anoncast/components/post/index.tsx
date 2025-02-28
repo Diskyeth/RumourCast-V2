@@ -202,12 +202,12 @@ export function PostDisplay({
           {cast.embeds.map((embed) => {
             if (embed.metadata?.image) {
               return (
-                <img key={embed.url} src={embed.url} alt="embed" className="rounded-xl" />
+                <img key={embed.url} src={embed.url} alt="embed" className="rounded-md" />
               )
             }
             if (embed.metadata?.html) {
               return (
-                <div key={embed.url} className="w-full border rounded-xl overflow-hidden">
+                <div key={embed.url} className="w-full border rounded-md overflow-hidden">
                   {embed.metadata?.html?.ogImage &&
                     embed.metadata?.html?.ogImage.length > 0 && (
                       <img

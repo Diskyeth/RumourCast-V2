@@ -1,7 +1,7 @@
 'use client'
 
 import { CreatePostProvider } from '@/components/create-post/context'
-import { NavTabs } from '@/components/nav-tabs'
+
 import { Button } from '@/components/ui/button'
 import { Check, Loader2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
@@ -20,7 +20,6 @@ function Inner() {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">
-        <NavTabs />
         <div className="flex flex-col gap-2 bg-zinc-900 border border-zinc-700 p-4 rounded-lg">
           <span className="font-semibold text-xl text-foreground">$ANON</span>
           <div className="flex flex-row gap-2 justify-between ">

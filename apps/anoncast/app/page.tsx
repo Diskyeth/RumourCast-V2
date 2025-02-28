@@ -3,7 +3,6 @@
 import ActionComponent from '@/components/action'
 import { PostFeed, PromotedFeed } from '@/components/post-feed'
 import { CreatePostProvider, useCreatePost } from '@/components/create-post/context'
-import { NavTabs } from '@/components/nav-tabs'
 
 export default function Home() {
   return (
@@ -18,7 +17,6 @@ function Inner() {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">
-        <NavTabs />
         {variant === 'anoncast' ? (
           <ActionComponent variant="post" />
         ) : (

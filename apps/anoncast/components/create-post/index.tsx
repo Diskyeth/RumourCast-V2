@@ -368,7 +368,7 @@ function RemoveableEmbed() {
   return (
     <div className="relative">
       <div
-        className="w-full border rounded-xl overflow-hidden cursor-pointer"
+        className="w-full border rounded-md overflow-hidden cursor-pointer"
         onClick={() => window.open(embed, '_blank')}
       >
         {image && (
@@ -455,7 +455,7 @@ function RemoveableParent() {
   return (
     <div className="relative">
       <div
-        className="w-full border rounded-xl p-2 overflow-hidden cursor-pointer flex flex-col gap-2"
+        className="w-full border rounded-md p-2 overflow-hidden cursor-pointer flex flex-col gap-2"
         onClick={() =>
           window.open(
             `https://warpcast.com/${parent.author.username}/${parent.hash}`,
@@ -469,7 +469,7 @@ function RemoveableParent() {
             <img
               src={parent.author.pfp_url}
               alt={parent.author.username}
-              className="w-6 h-6 rounded-full"
+              className="w-6 h-6 rounded-md"
             />
             <p className="text-md font-bold">{parent.author.username}</p>
           </div>
@@ -628,7 +628,7 @@ function RemoveableQuote() {
   return (
     <div className="relative">
       <div
-        className="w-full border rounded-xl p-2 overflow-hidden cursor-pointer flex flex-col gap-2"
+        className="w-full border rounded-md p-2 overflow-hidden cursor-pointer flex flex-col gap-2"
         onClick={() =>
           window.open(
             `https://warpcast.com/${quote.author.username}/${quote.hash}`,
@@ -641,7 +641,7 @@ function RemoveableQuote() {
           <img
             src={quote.author.pfp_url}
             alt={quote.author.username}
-            className="w-6 h-6 rounded-full"
+            className="w-6 h-6 rounded-md"
           />
           <p className="text-md font-bold">{quote.author.username}</p>
         </div>
@@ -705,7 +705,7 @@ function Credential() {
           Post Credential <span className="text-red-500">*</span>
         </span>
         <span className="text-sm text-zinc-400">
-          @anoncast requires a verified credential for at least 5,000 $ANON.
+          RumourCast requires a verified credential for at least 10.000.00,000 $RUMOUR.
         </span>
       </div>
       <CredentialsSelect selected={credential} onSelect={setCredential} />
