@@ -84,43 +84,42 @@ export function CreatePost({ variant }: { variant: 'post' | 'launch' }) {
       }
     }
   }
+  const baseText = "I heard a rumour... ";
 
   return (
     <div className="flex flex-col gap-4">
       <RemoveableParent />
       <Credential />
-      <Textarea
-  value={text ?? "I heard a rumour... "}
+     
+<Textarea
+  value={text ?? baseText}
   onChange={(e) => {
-    const baseText = "I heard a rumour... ";
     const newValue = e.target.value ?? "";
 
-    if (!newValue.startsWith(baseText)) {
-      setText(baseText + newValue.slice(baseText.length));
-    } else {
-      setText(newValue);
-    }
+    setText((prev) => {
+      if (!newValue.startsWith(baseText)) {
+        return baseText + newValue.slice(baseText.length);
+      }
+      return newValue;
+    });
   }}
   className="h-32 p-3 resize-none font-medium !text-base placeholder:text-zinc-400 bg-zinc-950 border border-zinc-700"
   onKeyDown={(e) => {
-    const baseText = "I heard a rumour... ";
-    
-    // Prevent editing within the base text
     if (
       e.target.selectionStart < baseText.length &&
-      (e.key === "Backspace" || e.key === "Delete" || e.key.length === 1)
+      ["Backspace", "Delete"].includes(e.key)
     ) {
       e.preventDefault();
     }
   }}
   onFocus={(e) => {
-    const baseText = "I heard a rumour... ";
-
-    // Ensure the text is always set and move cursor after base text
     if (!text || !text.startsWith(baseText)) {
       setText(baseText);
     }
-    e.target.setSelectionRange(baseText.length, baseText.length);
+
+    requestAnimationFrame(() => {
+      e.target.setSelectionRange(baseText.length, baseText.length);
+    });
   }}
 />
       <RevealPhrase />
