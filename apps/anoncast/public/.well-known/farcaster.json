@@ -7,10 +7,10 @@
   "frame": {
     "name": "RumourCast",
     "version": "0.0.1",
-    "iconUrl": "https://anoncast.org/anon.png",
+    "iconUrl": "https://rumourcast.fun/rumour.png",
     "homeUrl": "https://frame.rumourcast.fun/",
-    "splashImageUrl": "https://anoncast.org/anon.png",
-    "splashBackgroundColor": "#151515",
+    "splashImageUrl": "https://rumourcast.fun/rumour.png",
+    "splashBackgroundColor": "#201424",
     "webhookUrl": "https://rumourcast.fun/webhook"
   }
 }
