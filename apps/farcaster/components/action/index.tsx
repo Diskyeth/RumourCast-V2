@@ -26,28 +26,29 @@ export default function ActionComponent({
   const TWITTER_PROMOTE = BigInt(PROMOTE_AMOUNT) / BigInt(10 ** 18)
   const DELETE_POST = BigInt(DELETE_AMOUNT) / BigInt(10 ** 18)
 
-  // Default values for post variant
-  const defaultTitle = 'Spread Rumours'
-  const defaultDescription =
-    "Posts are made anonymous using zk proofs. Due to the complex calculations required, it could take up to a few minutes. Do not post porn, doxes, shills, or threats. This is not about censorship resistance - it's about great anonymous posts."
-  const defaultRequirements = [
-    { amount: Number(FARCASTER_POST), label: 'Post to @rumour' },
-    {
-      amount: Number(TWITTER_PROMOTE),
-      label: 'Promote posts to X/Twitter',
-    },
-    { amount: Number(DELETE_POST), label: 'Delete posts' },
-  ]
+// Default values for post variant
+const defaultDescription =
+"Rumours are made anonymous using zk proofs. Do not post porn, doxes, shills, or threats. This is for sharing rumours and gossip - not enabling bad behaviour."
+const defaultRequirements = [
+{ amount: Number(FARCASTER_POST), label: 'Post to @rumour' },
+{
+  amount: Number(TWITTER_PROMOTE),
+  label: 'Promote posts to X/Twitter',
+},
+{ amount: Number(DELETE_POST), label: 'Delete Rumours' },
+]
 
-  const displayTitle = title || defaultTitle
   const displayDescription = description || defaultDescription
   const displayRequirements = requirements || defaultRequirements
 
   return (
-    <Alert className="flex flex-col gap-4 bg-zinc-900 border border-zinc-700">
-      <AlertTitle className="font-semibold text-xl">{displayTitle}</AlertTitle>
+    <Alert className="flex flex-col px-6 py-8 gap-4 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-2xl border-none shadow-lg shadow-black-500/50">
+      <AlertTitle className="font-semibold text-3xl">
+        <span className="block">I heard a rumour... 👀</span>
+        <span className="block">Gossip on Farcaster</span>
+      </AlertTitle>
       <AlertDescription>
-        <p className="text-zinc-400">{displayDescription}</p>
+        <p className="text-zinc-100">{displayDescription}</p>
         <br />
         <p className="text-zinc-400">Holder requirements:</p>
         <ul className="flex flex-col gap-1 mt-3">
