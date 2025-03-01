@@ -21,7 +21,7 @@ export function PostImage({ post }: { post: Post }) {
   return (
     <div
       style={{
-        background: '#050505',
+        background: '#201424',
         width: '100%',
         height: '100%',
         display: 'flex',

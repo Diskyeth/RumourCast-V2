@@ -125,7 +125,7 @@ export function CreatePost() {
           <p className="font-medium text-zinc-400">{`${length} / 320`}</p>
           <Button
             onClick={createPost}
-            className="font-bold text-md rounded-md hover:scale-105 transition-all duration-300"
+            className="font-bold text-lg px-4 py-6 rounded-full hover:scale-105 transition-all duration-300"
             disabled={isPending || !credential || !text}
           >
             {isPending ? (
@@ -134,7 +134,7 @@ export function CreatePost() {
                 <p>Generating proof</p>
               </div>
             ) : (
-              'Spread Rumours'
+              'Cast rumour 👀'
             )}
           </Button>
         </div>
@@ -715,7 +715,7 @@ function Credential() {
           Post Credential <span className="text-red-500">*</span>
         </span>
         <span className="text-sm text-zinc-400">
-          RumourCast requires a verified credential for at least 10.000.00,000 $RUMOUR.
+          RumourCast requires a verified credential for at least 100M $RUMOUR.
         </span>
       </div>
       <CredentialsSelect selected={credential} onSelect={setCredential} />

@@ -125,7 +125,7 @@ export function CreatePost() {
           <p className="font-medium text-zinc-400">{`${length} / 320`}</p>
           <Button
             onClick={createPost}
-            className="font-bold text-md rounded-md hover:scale-105 transition-all duration-300"
+            className="font-bold text-lg px-4 py-6 rounded-full hover:scale-105 transition-all duration-300"
             disabled={isPending || !credential || !text}
           >
             {isPending ? (
@@ -134,7 +134,7 @@ export function CreatePost() {
                 <p>Generating proof</p>
               </div>
             ) : (
-              'Spread Rumours'
+              'Cast rumour 👀'
             )}
           </Button>
         </div>
@@ -144,26 +144,36 @@ export function CreatePost() {
           width={window.innerWidth}
           height={window.innerHeight}
           colors={[
-            '#808080', // Mid gray
-            '#999999',
-            '#b3b3b3',
-            '#cccccc',
-            '#e6e6e6',
-            '#ffffff', // Pure white
+            '#C848FF', // Vibrant purple
+            '#FFFFFF', // Pure white
           ]}
           drawShape={(ctx) => {
+            const shapeType = Math.floor(Math.random() * 3) // Randomly pick a shape
             ctx.beginPath()
-            ctx.lineWidth = 3
+            ctx.lineWidth = 2
 
-            // Draw the main curve of the question mark
-            ctx.moveTo(0, -8)
-            ctx.quadraticCurveTo(8, -8, 8, -16)
-            ctx.quadraticCurveTo(8, -30, 0, -30)
-            ctx.quadraticCurveTo(-8, -30, -8, -20)
+            switch (shapeType) {
+              case 0: // Circle
+                ctx.arc(0, 0, 8, 0, Math.PI * 2, true)
+                break
 
-            // Draw the dot of the question mark
-            ctx.moveTo(2, 0)
-            ctx.arc(0, 0, 2, 0, Math.PI * 2, true)
+              case 1: // Star
+                for (let i = 0; i < 5; i++) {
+                  const angle = ((Math.PI * 2) / 5) * i
+                  const x = Math.cos(angle) * 8
+                  const y = Math.sin(angle) * 8
+                  ctx.lineTo(x, y)
+                }
+                ctx.closePath()
+                break
+
+              case 2: // Square
+                ctx.rect(-8, -8, 16, 16)
+                break
+
+              default:
+                break
+            }
 
             ctx.stroke()
             ctx.closePath()
@@ -715,7 +725,7 @@ function Credential() {
           Post Credential <span className="text-red-500">*</span>
         </span>
         <span className="text-sm text-zinc-400">
-          @anoncast requires a verified credential for at least 5,000 $ANON.
+        RumourCast requires a verified credential for at least 10.000.00,000 $RUMOUR.
         </span>
       </div>
       <CredentialsSelect selected={credential} onSelect={setCredential} />

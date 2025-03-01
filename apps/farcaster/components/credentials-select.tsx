@@ -76,7 +76,7 @@ export function CredentialsSelect({
         key={open ? 'open' : 'closed'}
       >
         <SelectTrigger className="resize-none bg-zinc-950 border border-zinc-700">
-          <SelectValue placeholder="Select credential to use..." />
+          <SelectValue placeholder="Create rumour credential." />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
@@ -86,7 +86,7 @@ export function CredentialsSelect({
                   <span className="font-semibold">
                     {`${credential.metadata?.balance ? Number.parseFloat(formatEther(BigInt(credential.metadata.balance))).toLocaleString() : 'Unknown'} ${
                       credential.metadata.tokenAddress === TOKEN_ADDRESS
-                        ? 'ANON'
+                        ? 'RUMOUR'
                         : credential.metadata.tokenAddress
                     }`}
                   </span>
@@ -174,13 +174,10 @@ export function VerifyCredential({
         <AlertDialogHeader>
           <AlertDialogTitle>Add $RUMOUR credential</AlertDialogTitle>
           <AlertDialogDescription>
-            Credentials anonymously verify your onchain balance and add trusted tags to
-            your posts. For now, we only support $RUMOUR - 5K ANON to post, 2M $RUMOUR to
-            promote.
+          Credentials anonymously verify your onchain balance and add trusted tags to your posts.
             <br />
             <br />
-            Important: While you can verify any balance amount, please note that higher
-            balances may make it easier to identify you.
+            Important: While you can verify any balance amount, please note that higher balances may make it easier to identify you..
           </AlertDialogDescription>
         </AlertDialogHeader>
         <div className="flex flex-col gap-2 mt-4">
@@ -189,7 +186,7 @@ export function VerifyCredential({
             onValueChange={([balance]) => setBalance(balance)}
             min={minBalance}
             max={maxBalance}
-            step={100000000}
+            step={1000000}
           />
           <div className="flex flex-row items-center justify-between">
             <p className="text-sm text-zinc-400">{minBalance.toLocaleString()}</p>

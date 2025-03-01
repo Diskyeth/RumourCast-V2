@@ -76,7 +76,7 @@ export function CredentialsSelect({
         key={open ? 'open' : 'closed'}
       >
         <SelectTrigger className="resize-none bg-zinc-950 border border-zinc-700">
-          <SelectValue placeholder="Select credential to use..." />
+          <SelectValue placeholder="Create rumour credential." />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
@@ -86,7 +86,7 @@ export function CredentialsSelect({
                   <span className="font-semibold">
                     {`${credential.metadata?.balance ? Number.parseFloat(formatEther(BigInt(credential.metadata.balance))).toLocaleString() : 'Unknown'} ${
                       credential.metadata.tokenAddress === TOKEN_ADDRESS
-                        ? 'ANON'
+                        ? 'RUMOUR'
                         : credential.metadata.tokenAddress
                     }`}
                   </span>
