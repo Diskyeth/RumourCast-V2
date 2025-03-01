@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en">
@@ -49,31 +49,26 @@ export default function RootLayout({
       <body
         className={`${GeistSans.className} antialiased min-h-screen w-full overflow-x-hidden`}
       >
-        {/* Hamburger Menu Button (Fixed Top Right) */}
-        <div className="fixed top-4 right-6 xl:right-12 z-40">
-          <HamburgerMenuButton />
-        </div>
-
-        {/* Main Content (Inside Providers) */}
         <Providers>
-          <div className="flex h-screen flex-col p-4 xl:p-8 max-w-screen-sm mx-auto gap-8">
-            {/* Header Section */}
-            <div className="flex items-center justify-between xl:absolute xl:top-0 xl:left-0 xl:right-0 xl:p-8 xl:max-w-screen-xl xl:mx-auto">
-              <Logo />
-              {/* Connect Button (Now Positioned Properly) */}
-              <div className="relative flex items-center">
-                <ConnectButton />
-              </div>
-            </div>
+          {/* Fixed Header */}
+          <header className="sticky top-0 z-50 backdrop-blur-md w-full px-6 xl:px-12 py-4">
+          <div className="flex justify-between items-center w-full">
+  <Logo />
+  <div className="flex items-center gap-4">
+    <ConnectButton />
+    <HamburgerMenuButton />
+  </div>
+</div>
+          </header>
 
-            {/* Page Content */}
-            <div className="z-10">{children}</div>
+          {/* Main Content */}
+          <div className="flex flex-col min-h-screen max-w-screen-sm mx-auto p-4 xl:p-8 gap-8">
+            <main className="flex-1 w-full">{children}</main>
           </div>
         </Providers>
-
         <Toaster />
         <BackToTopButton />
       </body>
     </html>
-  );
+  )
 }
