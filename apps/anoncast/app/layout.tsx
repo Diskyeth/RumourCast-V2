@@ -49,19 +49,23 @@ export default function RootLayout({
       <body
         className={`${GeistSans.className} antialiased min-h-screen w-full overflow-x-hidden`}
       >
-        {/* Hamburger Menu (Outside Providers) */}
-        <div className="absolute top-4 right-6 xl:right-12 z-50">
+        {/* Hamburger Menu Button (Fixed Top Right) */}
+        <div className="fixed top-4 right-6 xl:right-12 z-40">
           <HamburgerMenuButton />
         </div>
 
         {/* Main Content (Inside Providers) */}
         <Providers>
           <div className="flex h-screen flex-col p-4 xl:p-8 max-w-screen-sm mx-auto gap-8">
-            {/* Header Section (Inside Providers) */}
+            {/* Header Section */}
             <div className="flex items-center justify-between xl:absolute xl:top-0 xl:left-0 xl:right-0 xl:p-8 xl:max-w-screen-xl xl:mx-auto">
               <Logo />
-              <ConnectButton />
+              {/* Connect Button (Now Positioned Properly) */}
+              <div className="relative flex items-center">
+                <ConnectButton />
+              </div>
             </div>
+
             {/* Page Content */}
             <div className="z-10">{children}</div>
           </div>
