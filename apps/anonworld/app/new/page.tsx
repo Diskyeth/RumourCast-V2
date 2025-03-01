@@ -11,7 +11,7 @@ export default function Home() {
         <PostFeedSelector selected="new" />
         <NewPost />
       </XStack>
-      <NewFeed fid={884230} />
+      <NewFeed fid={899289s} />
     </Content>
   )
 }
