@@ -79,14 +79,17 @@ export const uploadRoutes = createElysia({ prefix: '/upload' }).post(
 
 async function uploadImage(file: File) {
   const formData = new FormData()
-  formData.append('image', file)
+  formData.append('source', file) // Some APIs require "source" instead of "image"
 
-  const response = await fetch('https://api.imgbb.com/1/upload', {
+  const apiKey = process.env.UPLOAD_API_KEY ?? ''
+  if (!apiKey) {
+    throw new Error('UPLOAD_API_KEY is missing! Set it in your environment variables.')
+  }
+
+  console.log('Uploading image with API Key:', apiKey) // Debugging log
+
+  const response = await fetch(`https://freeimage.host/api/1/upload?key=${apiKey}`, {
     method: 'POST',
-    headers: {
-      'X-API-Key': process.env.UPLOAD_API_KEY ?? '',
-      Accept: 'application/json',
-    },
     body: formData,
   })
 
