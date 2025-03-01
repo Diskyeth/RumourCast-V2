@@ -45,7 +45,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Logo />
             <div className="flex items-center gap-6">
               <ConnectButton />
-              <HamburgerMenuButton /> {/* This is now outside Providers */}
             </div>
           </div>
         </header>
@@ -54,6 +53,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Providers>
           <main className="flex-1 w-full">{children}</main>
         </Providers>
+
+        {/* Place HamburgerMenuButton here so it's not inside Providers */}
+        <HamburgerMenuButton />
 
         <Toaster />
         <BackToTopButton />
