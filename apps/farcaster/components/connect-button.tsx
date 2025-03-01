@@ -36,8 +36,8 @@ function Balance() {
   const amount = Number.parseFloat(formatEther(data ?? BigInt(0)))
 
   return (
-    <div className="text-md font-bold bg-white text-black pl-3 pr-2">
-      {`${formatNumber(amount)} ANON`}
+    <div className="text-md font-bold text-white pl-3 pr-2">
+      {`${formatNumber(amount)} RUMOUR`}
     </div>
   )
 }
