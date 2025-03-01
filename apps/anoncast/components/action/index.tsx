@@ -6,7 +6,6 @@ import { CircleMinusIcon } from 'lucide-react'
 import { CreatePost } from '../create-post'
 import { POST_AMOUNT, PROMOTE_AMOUNT, DELETE_AMOUNT } from '@/lib/utils'
 import { useAccount } from 'wagmi'
-import { Separator } from '../ui/separator'
 
 export default function ActionComponent({
   variant = 'post',
@@ -105,7 +104,7 @@ export default function ActionComponent({
       Uniswap
     </a>
     <a
-      href="https://github.com/leovido/rumourcast"
+      href="https://github.com/Diskyeth/RumourCast-V2"
       target="_blank"
       rel="noopener noreferrer"
       className="text-sm button-secondary px-3 py-3 rounded-full font-medium"
@@ -114,7 +113,6 @@ export default function ActionComponent({
           </a>
         </div>
       </div>
-      <Separator />
       <CreatePost variant={variant} />
     </Alert>
   )
