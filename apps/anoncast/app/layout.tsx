@@ -49,29 +49,21 @@ export default function RootLayout({
       <body
         className={`${GeistSans.className} antialiased min-h-screen w-full overflow-x-hidden`}
       >
-        {/* Fixed Header with Hamburger Menu Outside Providers */}
-        <header className="sticky top-0 z-50 backdrop-blur-md w-full px-6 xl:px-12 py-4">
-          <div className="flex items-center justify-between w-full min-w-0">
-            {/* Left: Logo */}
-            <Logo />
+        {/* Hamburger Menu (Outside Providers) */}
+        <div className="absolute top-4 right-6 xl:right-12 z-50">
+          <HamburgerMenuButton />
+        </div>
 
-            {/* Right: Connect Button and Hamburger Menu */}
-            <div className="flex items-center gap-6 min-w-0">
-              {/* Connect Button (Inside Providers) */}
-              <Providers>
-                <ConnectButton />
-              </Providers>
-
-              {/* Hamburger Menu Button (Outside Providers) */}
-              <HamburgerMenuButton />
-            </div>
-          </div>
-        </header>
-
-        {/* Main Content */}
+        {/* Main Content (Inside Providers) */}
         <Providers>
-          <div className="flex flex-col min-h-screen max-w-screen-sm mx-auto p-4 xl:p-8 gap-8">
-            <main className="flex-1 w-full">{children}</main>
+          <div className="flex h-screen flex-col p-4 xl:p-8 max-w-screen-sm mx-auto gap-8">
+            {/* Header Section (Inside Providers) */}
+            <div className="flex items-center justify-between xl:absolute xl:top-0 xl:left-0 xl:right-0 xl:p-8 xl:max-w-screen-xl xl:mx-auto">
+              <Logo />
+              <ConnectButton />
+            </div>
+            {/* Page Content */}
+            <div className="z-10">{children}</div>
           </div>
         </Providers>
 
