@@ -1,12 +1,12 @@
 {
   "accountAssociation": {
-    "header": "eyJmaWQiOjM4OTgwOCwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDFDODdFMjdGOWQ5RDczZTAyNDEwQjAwQzE5NmVBNjQwNzk1REYxZDIifQ",
-    "payload": "eyJkb21haW4iOiJydW1vdXJjYXN0LmZ1biJ9",
-    "signature": "MHg4ZThhZTMzYjRjODJkNmM0ZTQ3MDQ4OGZiMDExMjgzZDFmZTAxODU3MzE1MGU3NWE1YjI5OGMxYzgxOTUyMGQ0N2VlNWIzMGIzMmYzMzhlNjMzOWM3MWEwMjI5Y2M4MWYxMDY3YTljZDQxMzZjNmUzMDAxNTM5YmY5Yzk3NjgxNDFj"
+    "header": "eyJmaWQiOjg4NDIzMCwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweEFENDNDZTA3NTQ0ODE2RURhQ2I0MDQ1ZUY2NTA2ZTBGNTc0RDZhRDYifQ",
+    "payload": "eyJkb21haW4iOiJmcmFtZS5ydW1vdXJjYXN0LmZ1biJ9",
+    "signature": "MHgxYmViMWNiNjY3ZDE3NTA0YTc4MmFlNDkwNTg4NjI1ZGZjYTkzNTE4YjFhYmE5NjM0MmE1NmJiODg4ZjQxYWVhNmJiNzdiMTdkNGVmNzMzMzUyN2Q3ZWIzYmRhY2Y1Yzg0YzcwZGI3MTEwMTRjNGM4NGQ5ZTdhMTJiMWE1Y2Q4ZjFi"
   },
   "frame": {
     "name": "RumourCast",
-    "version": "1",
+    "version": "0.0.1",
     "iconUrl": "https://rumourcast.fun/rumour.png",
     "homeUrl": "https://frame.rumourcast.fun//",
     "splashImageUrl": "https://rumourcast.fun/rumour.png",

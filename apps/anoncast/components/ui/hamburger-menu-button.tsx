@@ -26,7 +26,7 @@ export default function HamburgerMenuButton() {
     <>
   
       <button
-        className="flex right-6 z-50 w-14 h-14 flex items-center justify-center bg-primary text-white rounded-full shadow-xl transition-transform duration-300 hover:scale-10 gradient-border-wrapper hover:scale-105"
+        className="flex right-6 z-50 w-14 h-14 flex items-center justify-center bg-black/70 text-white rounded-full shadow-xl transition-transform duration-300 hover:scale-10 gradient-border-wrapper hover:scale-105"
         onClick={toggleMenu}
         aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
       >
