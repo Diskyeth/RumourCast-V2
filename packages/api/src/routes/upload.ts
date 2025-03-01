@@ -93,17 +93,17 @@ async function uploadImage(file: File) {
     body: formData,
   });
 
+  const rawResponse = await response.text(); // Read as text before parsing JSON
+  console.log('Raw Response:', rawResponse);
+
   if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Upload failed: ${errorText}`);
+    throw new Error(`Upload failed: ${rawResponse}`);
   }
 
-  const contentType = response.headers.get('content-type');
-  if (!contentType || !contentType.includes('application/json')) {
-    const errorText = await response.text();
-    throw new Error(`Expected JSON response but received: ${errorText}`);
+  try {
+    return JSON.parse(rawResponse); // Parse JSON only if it's valid
+  } catch (error) {
+    throw new Error(`Invalid response format. Expected JSON but got: ${rawResponse}`);
   }
-
-  return response.json();
 }
 
