@@ -6,7 +6,7 @@ import { GeistSans } from 'geist/font/sans'
 import { ConnectButton } from '@/components/connect-button'
 import { Logo } from '@/components/logo'
 import BackToTopButton from '@/components/ui/back-to-top-button'
-
+import HamburgerMenuButton from '@/components/ui/hamburger-menu-button'
 
 export const metadata: Metadata = {
   title: 'RumourCast',
@@ -54,9 +54,9 @@ export default function RootLayout({
           <header className="sticky top-0 z-50 backdrop-blur-md w-full px-4 xl:px-8 py-4">
             <div className="flex items-center justify-between">
               <Logo />
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-8">
                 <ConnectButton />
-                
+                <HamburgerMenuButton />
               </div>
             </div>
           </header>

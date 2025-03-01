@@ -23,7 +23,7 @@ export const ConnectButton = () => {
   return (
     <div className="flex flex-row rounded-full overflow-hidden items-center hover:scale-105 transition-all duration-300 gradient-border-wrapper sm:space-x-2 space-x-1 h-14">
       <Balance />
-      <div className="text-md font-bold text-primary rounded-full py-2 px-3 m-0.5 truncate">
+      <div className="text-md font-bold bg-gray-200 text-black rounded-md py-1.5 px-3 m-0.5">
         {context?.user?.username}
       </div>
     </div>
@@ -36,29 +36,22 @@ function Balance() {
   const amount = Number.parseFloat(formatEther(data ?? BigInt(0)))
 
   return (
-    <div className="flex items-center">
-      <span className="text-mflex flex-row rounded-full overflow-hidden items-center hover:scale-105 transition-all duration-300 gradient-border-wrapper sm:space-x-2 space-x-1 h-14d font-bold text-white md:inline hidden pl-3 pr-2">
-        {`${formatNumber(amount)} RUMOUR`}
-      </span>
-      <span
-        className="text-sm font-bold text-white md:hidden flex-shrink-0 pl-2 pr-2"
-        style={{ maxWidth: '80px', whiteSpace: 'nowrap' }} // Increased maxWidth for visibility
-      >
-        {`${formatNumber(amount)} R..`}
-      </span>
+    <div className="text-md font-bold bg-white text-black pl-3 pr-2">
+      {`${formatNumber(amount)} ANON`}
     </div>
   )
 }
 
 function formatNumber(num: number) {
   if (num >= 1e9) {
-    return `${(num / 1e9).toFixed(2)}B` // Billion
+    return `${(num / 1e9).toFixed(2)}B`
   }
   if (num >= 1e6) {
-    return `${(num / 1e6).toFixed(2)}M` // Million
+    return `${(num / 1e6).toFixed(2)}M`
   }
   if (num >= 1e3) {
-    return `${(num / 1e3).toFixed(2)}K` // Thousand
+    return `${(num / 1e3).toFixed(2)}K`
   }
   return num.toFixed(2)
+}
 }
