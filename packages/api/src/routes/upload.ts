@@ -81,7 +81,7 @@ async function uploadImage(file: File) {
   const formData = new FormData()
   formData.append('image', file)
 
-  const response = await fetch('https://freeimage.host/api/1/upload', {
+  const response = await fetch('https://api.imgbb.com/1/upload', {
     method: 'POST',
     headers: {
       'X-API-Key': process.env.UPLOAD_API_KEY ?? '',
