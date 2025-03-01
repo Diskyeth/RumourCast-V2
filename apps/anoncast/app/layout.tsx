@@ -6,7 +6,7 @@ import { GeistSans } from 'geist/font/sans'
 import { ConnectButton } from '@/components/connect-button'
 import { Logo } from '@/components/logo'
 import BackToTopButton from '@/components/ui/back-to-top-button'
-import HamburgerMenuButton from '@/components/ui/hamburger-menu-button'
+
 
 export const metadata: Metadata = {
   title: 'RumourCast',
@@ -34,29 +34,38 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
     <html lang="en">
-      <body className={`${GeistSans.className} antialiased min-h-screen w-full bg-background`}>
-        
-        {/* Header remains outside Providers */}
-        <header className="sticky top-0 z-50 backdrop-blur-md w-full px-6 xl:px-12 py-4">
-          <div className="flex justify-between items-center w-full">
-            <Logo />
-            <div className="flex items-center gap-6">
-              <ConnectButton />
-            </div>
-          </div>
-        </header>
-
-        {/* Wrap only main content inside Providers */}
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#000000" />
+        <link rel="icon" href="/favicon.ico" />
+      </head>
+      <body
+        className={`${GeistSans.className} antialiased min-h-screen w-full overflow-x-hidden`}
+      >
         <Providers>
-          <main className="flex-1 w-full">{children}</main>
+          {/* Fixed Header */}
+          <header className="sticky top-0 z-50 backdrop-blur-md w-full px-4 xl:px-8 py-4">
+            <div className="flex items-center justify-between">
+              <Logo />
+              <div className="flex items-center gap-4">
+                <ConnectButton />
+                
+              </div>
+            </div>
+          </header>
+
+          {/* Main Content */}
+          <div className="flex flex-col min-h-screen max-w-screen-sm mx-auto p-4 xl:p-8 gap-8">
+            <main className="flex-1 w-full">{children}</main>
+          </div>
         </Providers>
-
-        {/* Place HamburgerMenuButton here so it's not inside Providers */}
-        <HamburgerMenuButton />
-
         <Toaster />
         <BackToTopButton />
       </body>
