@@ -78,25 +78,32 @@ export const uploadRoutes = createElysia({ prefix: '/upload' }).post(
 )
 
 async function uploadImage(file: File) {
-  const formData = new FormData()
-  formData.append('source', file) // Some APIs require "source" instead of "image"
+  const formData = new FormData();
+  formData.append('source', file); // 'source' is the expected field name
 
-  const apiKey = process.env.UPLOAD_API_KEY ?? ''
+  const apiKey = process.env.UPLOAD_API_KEY ?? '';
   if (!apiKey) {
-    throw new Error('UPLOAD_API_KEY is missing! Set it in your environment variables.')
+    throw new Error('UPLOAD_API_KEY is missing! Set it in your environment variables.');
   }
 
-  console.log('Uploading image with API Key:', apiKey) // Debugging log
+  console.log('Uploading image with API Key:', apiKey); // Debugging log
 
-  const response = await fetch(`https://freeimage.host/api/1/upload?key=${apiKey}`, {
+  const response = await fetch(`https://freeimage.host/api/1/upload?key=${apiKey}&format=json`, {
     method: 'POST',
     body: formData,
-  })
+  });
 
   if (!response.ok) {
-    const errorText = await response.text()
-    throw new Error(`Upload failed: ${errorText}`)
+    const errorText = await response.text();
+    throw new Error(`Upload failed: ${errorText}`);
   }
 
-  return response.json()
+  const contentType = response.headers.get('content-type');
+  if (!contentType || !contentType.includes('application/json')) {
+    const errorText = await response.text();
+    throw new Error(`Expected JSON response but received: ${errorText}`);
+  }
+
+  return response.json();
 }
+
