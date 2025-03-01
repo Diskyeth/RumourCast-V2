@@ -78,32 +78,40 @@ export const uploadRoutes = createElysia({ prefix: '/upload' }).post(
 )
 
 async function uploadImage(file: File) {
-  const formData = new FormData();
-  formData.append('source', file); // 'source' is the expected field name
+  const formData = new FormData()
+  formData.append('source', file) // FreeImage.host requires "source"
 
-  const apiKey = process.env.UPLOAD_API_KEY ?? '';
+  const apiKey = process.env.UPLOAD_API_KEY ?? ''
   if (!apiKey) {
-    throw new Error('UPLOAD_API_KEY is missing! Set it in your environment variables.');
+    throw new Error('UPLOAD_API_KEY is missing! Set it in your environment variables.')
   }
 
-  console.log('Uploading image with API Key:', apiKey); // Debugging log
+  console.log('Uploading image with API Key:', apiKey) // Debugging log
 
   const response = await fetch(`https://freeimage.host/api/1/upload?key=${apiKey}&format=json`, {
     method: 'POST',
     body: formData,
-  });
+  })
 
-  const rawResponse = await response.text(); // Read as text before parsing JSON
-  console.log('Raw Response:', rawResponse);
-
-  if (!response.ok) {
-    throw new Error(`Upload failed: ${rawResponse}`);
-  }
+  const result = await response.text();
+  console.log('Raw Response:', result);
 
   try {
-    return JSON.parse(rawResponse); // Parse JSON only if it's valid
+    const jsonResponse = JSON.parse(result);
+    if (jsonResponse.status_code !== 200 || !jsonResponse.image) {
+      throw new Error(`Upload failed: ${jsonResponse.status_txt || 'Unknown error'}`);
+    }
+
+    return {
+      success: true,
+      message: jsonResponse.success?.message || 'Upload successful',
+      imageUrl: jsonResponse.image.display_url, // Correct field for image URL
+      thumbnailUrl: jsonResponse.image.thumb?.url ?? null,
+      width: jsonResponse.image.width,
+      height: jsonResponse.image.height,
+      size: jsonResponse.image.size_formatted,
+    };
   } catch (error) {
-    throw new Error(`Invalid response format. Expected JSON but got: ${rawResponse}`);
+    throw new Error(`Invalid response format: ${result}`);
   }
 }
-
