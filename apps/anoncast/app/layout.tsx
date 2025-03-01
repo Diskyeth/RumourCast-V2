@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -49,26 +49,35 @@ export default function RootLayout({
       <body
         className={`${GeistSans.className} antialiased min-h-screen w-full overflow-x-hidden`}
       >
-        <Providers>
-          {/* Fixed Header */}
-          <header className="sticky top-0 z-50 backdrop-blur-md w-full px-6 xl:px-12 py-4">
-          <div className="flex justify-between items-center w-full">
-  <Logo />
-  <div className="flex items-center gap-4">
-    <ConnectButton />
-    <HamburgerMenuButton />
-  </div>
-</div>
-          </header>
+        {/* Fixed Header with Hamburger Menu Outside Providers */}
+        <header className="sticky top-0 z-50 backdrop-blur-md w-full px-6 xl:px-12 py-4">
+          <div className="flex items-center justify-between w-full min-w-0">
+            {/* Left: Logo */}
+            <Logo />
 
-          {/* Main Content */}
+            {/* Right: Connect Button and Hamburger Menu */}
+            <div className="flex items-center gap-6 min-w-0">
+              {/* Connect Button (Inside Providers) */}
+              <Providers>
+                <ConnectButton />
+              </Providers>
+
+              {/* Hamburger Menu Button (Outside Providers) */}
+              <HamburgerMenuButton />
+            </div>
+          </div>
+        </header>
+
+        {/* Main Content */}
+        <Providers>
           <div className="flex flex-col min-h-screen max-w-screen-sm mx-auto p-4 xl:p-8 gap-8">
             <main className="flex-1 w-full">{children}</main>
           </div>
         </Providers>
+
         <Toaster />
         <BackToTopButton />
       </body>
     </html>
-  )
+  );
 }
