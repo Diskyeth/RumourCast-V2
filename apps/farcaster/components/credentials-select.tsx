@@ -109,7 +109,7 @@ export function CredentialsSelect({
         open={open}
         setOpen={setOpen}
         onVerify={onSelect}
-        minBalance={100000000}
+        minBalance={10000000}
       />
     </>
   )
