@@ -51,14 +51,14 @@ export default function RootLayout({
       >
         <Providers>
           {/* Fixed Header */}
-          <header className="sticky top-0 z-50 backdrop-blur-md w-full px-4 xl:px-8 py-4">
-            <div className="flex items-center justify-between">
-              <Logo />
-              <div className="flex items-center gap-4">
-                <ConnectButton />
-                <HamburgerMenuButton />
-              </div>
-            </div>
+          <header className="sticky top-0 z-50 backdrop-blur-md w-full px-6 xl:px-12 py-4">
+          <div className="flex justify-between items-center w-full">
+  <Logo />
+  <div className="flex items-center gap-4">
+    <ConnectButton />
+    <HamburgerMenuButton />
+  </div>
+</div>
           </header>
 
           {/* Main Content */}
