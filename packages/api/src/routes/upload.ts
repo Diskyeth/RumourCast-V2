@@ -94,22 +94,24 @@ async function uploadImage(file: File) {
   })
 
   const result = await response.text();
-  console.log('Raw Response:', result);
+  console.log('Raw Response:', result); // Debugging output
 
   try {
     const jsonResponse = JSON.parse(result);
-    if (!jsonResponse.success) {
+
+    if (!jsonResponse || jsonResponse.status !== 200) {
       throw new Error(`Upload failed: ${jsonResponse.error?.message || 'Unknown error'}`);
     }
 
     return {
       success: true,
       message: 'Upload successful',
-      imageUrl: jsonResponse.data.url, // ImgBB returns image URL in 'data.url'
-      thumbnailUrl: jsonResponse.data.thumb?.url ?? null, // Optional thumbnail
+      imageUrl: jsonResponse.data.url, // Main image URL
+      thumbnailUrl: jsonResponse.data.thumb?.url ?? null, // Thumbnail URL
       width: jsonResponse.data.width,
       height: jsonResponse.data.height,
       size: jsonResponse.data.size,
+      deleteUrl: jsonResponse.data.delete_url, // Deletion link
     };
   } catch (error) {
     throw new Error(`Invalid response format: ${result}`);
