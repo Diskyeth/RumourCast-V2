@@ -137,7 +137,7 @@ export function PostDisplay({
   const sanitizedText = cleanText(cast.text)
 
   return (
-    <div className="relative [overflow-wrap:anywhere] border border-[#C848FF] rounded-2xl overflow-hidden bg-[rgba(0,0,0,0.7)] backdrop-blur-sm">
+    <div className="relative [overflow-wrap:anywhere] border border-[#C848FF] rounded-2xl overflow-hidden bg-[rgba(0,0,0,0.1)] backdrop-blur-sm">
     <div className="flex flex-row gap-4  p-4 sm:p-6  ">
       <div className="flex flex-col gap-2 w-full">
         <div className="flex flex-row gap-4 justify-between">
@@ -154,7 +154,7 @@ export function PostDisplay({
                       className="text-xs font-medium border text-zinc-400 px-2 py-1 rounded-xl flex flex-row items-center gap-1"
                     >
                       <Coins size={12} />
-                      {`${formatNumber(Number.parseFloat(formatEther(BigInt(c.metadata.balance))))} ${c.metadata.tokenAddress === TOKEN_ADDRESS ? 'ANON' : c.metadata.tokenAddress}`}
+                      {`${formatNumber(Number.parseFloat(formatEther(BigInt(c.metadata.balance))))} ${c.metadata.tokenAddress === TOKEN_ADDRESS ? 'RUMOUR' : c.metadata.tokenAddress}`}
                     </div>
                   )
                 })}
