@@ -1,0 +1,6 @@
+# Skkip node_modules
+node_modules
+
+# Skip all files in the .git directory
+.git
+
