@@ -79,7 +79,7 @@ export const uploadRoutes = createElysia({ prefix: '/upload' }).post(
 
 async function uploadImage(file: File) {
   const formData = new FormData()
-  formData.append('source', file) // FreeImage.host requires "source"
+  formData.append('image', file) // ImgBB requires "image"
 
   const apiKey = process.env.UPLOAD_API_KEY ?? ''
   if (!apiKey) {
@@ -88,7 +88,7 @@ async function uploadImage(file: File) {
 
   console.log('Uploading image with API Key:', apiKey) // Debugging log
 
-  const response = await fetch(`https://freeimage.host/api/1/upload?key=${apiKey}&format=json`, {
+  const response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
     method: 'POST',
     body: formData,
   })
@@ -98,18 +98,18 @@ async function uploadImage(file: File) {
 
   try {
     const jsonResponse = JSON.parse(result);
-    if (jsonResponse.status_code !== 200 || !jsonResponse.image) {
-      throw new Error(`Upload failed: ${jsonResponse.status_txt || 'Unknown error'}`);
+    if (!jsonResponse.success) {
+      throw new Error(`Upload failed: ${jsonResponse.error?.message || 'Unknown error'}`);
     }
 
     return {
       success: true,
-      message: jsonResponse.success?.message || 'Upload successful',
-      imageUrl: jsonResponse.image.display_url, // Correct field for image URL
-      thumbnailUrl: jsonResponse.image.thumb?.url ?? null,
-      width: jsonResponse.image.width,
-      height: jsonResponse.image.height,
-      size: jsonResponse.image.size_formatted,
+      message: 'Upload successful',
+      imageUrl: jsonResponse.data.url, // ImgBB returns image URL in 'data.url'
+      thumbnailUrl: jsonResponse.data.thumb?.url ?? null, // Optional thumbnail
+      width: jsonResponse.data.width,
+      height: jsonResponse.data.height,
+      size: jsonResponse.data.size,
     };
   } catch (error) {
     throw new Error(`Invalid response format: ${result}`);
