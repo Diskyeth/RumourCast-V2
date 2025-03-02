@@ -458,9 +458,16 @@ function PromoteButton({ cast, isVerified }: { cast: Post; isVerified: boolean }
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
-        <p className="text-sm text-foreground underline decoration-dotted font-semibold cursor-pointer hover:text-zinc-400">
-          Promote
-        </p>
+      <p
+  className="text-sm text-foreground underline decoration-dotted font-semibold cursor-pointer hover:text-green-400 rounded-full"
+  style={{
+    backgroundColor: 'rgb(124, 101, 193)', // Purple background
+    padding: '0.25rem 0.5rem', // Padding for rounded effect
+    color: 'white', // Ensuring text is readable
+  }}
+>
+  Promote
+</p>
       </AlertDialogTrigger>
       <AlertDialogContent className="bg-black">
         <AlertDialogHeader>
@@ -623,9 +630,16 @@ function RevealButton({
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
-        <p className="text-sm text-foreground underline decoration-dotted font-semibold cursor-pointer hover:text-zinc-400">
-          Reveal
-        </p>
+      <p
+  className="text-sm text-foreground underline decoration-dotted font-semibold cursor-pointer hover:text-green-400 rounded-full"
+  style={{
+    backgroundColor: 'rgb(124, 101, 193)', // Purple background
+    padding: '0.25rem 0.5rem', // Padding for rounded effect
+    color: 'white', // Ensuring text is readable
+  }}
+>
+  Reveal
+</p>
       </AlertDialogTrigger>
       <AlertDialogContent className="bg-black">
         <AlertDialogHeader>
