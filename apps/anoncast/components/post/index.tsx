@@ -165,7 +165,7 @@ export function PostDisplay({
                       href={`https://warpcast.com/~/conversations/${cast.parent_hash}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-sm text-zinc-400 flex flex-row items-center gap-2 underline decoration-dotted hover:text-zinc-300"
+                      className="text-sm text-zinc-400 flex flex-row items-center gap-2 hover:text-zinc-300"
                     >
                       replying to a post
                     </a>
@@ -279,7 +279,7 @@ export function PostDisplay({
             <div className="flex flex-row gap-2 items-center" onClick={(e) => e.preventDefault()}>
               {address && (
                 <p
-                  className="text-sm rounded-full font-semibold cursor-pointer hover:text-zinc-400"
+                  className="text-sm rounded-full font-semibold cursor-pointer hover:text-zinc-400 hover:scale-110"
                   style={{
                     backgroundColor: 'rgb(124, 101, 193)',
                     padding: '0.25rem 0.5rem',
@@ -292,7 +292,7 @@ export function PostDisplay({
               )}
               {address && (
                 <p
-                  className="text-sm rounded-full font-semibold cursor-pointer hover:text-zinc-400"
+                  className="text-sm rounded-full font-semibold cursor-pointer hover:text-zinc-400 hover:scale-110"
                   style={{
                     backgroundColor: 'rgb(124, 101, 193)',
                     padding: '0.25rem 0.5rem',
@@ -311,7 +311,7 @@ export function PostDisplay({
                   href={`https://warpcast.com/~/conversations/${cast.hash}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-sm rounded-full font-semibold cursor-pointer hover:text-zinc-400"
+                  className="text-sm rounded-full font-semibold cursor-pointer hover:text-zinc-400 hover:scale-110 hover:scale-110"
                   style={{
                     backgroundColor: 'rgb(124, 101, 193)',
                     padding: '0.25rem 0.5rem',
@@ -368,7 +368,7 @@ function DeleteButton({ tweetId, isVerified }: { tweetId: string; isVerified: bo
     return (
       <>
         <p
-          className="text-sm text-red-500 underline decoration-dotted font-semibold cursor-pointer hover:text-red-400"
+          className="text-sm text-red-500 font-semibold cursor-pointer hover:text-red-400"
           onClick={() => setVerifyOpen(true)}
         >
           Delete
@@ -389,7 +389,7 @@ function DeleteButton({ tweetId, isVerified }: { tweetId: string; isVerified: bo
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
-        <p className="text-sm text-red-500 underline decoration-dotted font-semibold cursor-pointer hover:text-red-400">
+        <p className="text-sm text-red-500 font-semibold cursor-pointer hover:text-red-400">
           Delete
         </p>
       </AlertDialogTrigger>
@@ -437,7 +437,7 @@ function PromoteButton({ cast, isVerified }: { cast: Post; isVerified: boolean }
     return (
       <>
         <p
-          className="text-sm text-foreground underline decoration-dotted font-semibold cursor-pointer hover:text-zinc-400"
+          className="text-sm text-foreground underline decoration-dotted font-semibold cursor-pointer hover:text-zinc-400 hover:scale-110"
           onClick={() => setVerifyOpen(true)}
         >
           Promote
@@ -459,7 +459,7 @@ function PromoteButton({ cast, isVerified }: { cast: Post; isVerified: boolean }
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
       <p
-  className="text-sm text-foreground underline decoration-dotted font-semibold cursor-pointer hover:text-green-400 rounded-full"
+  className="text-sm text-foreground font-semibold cursor-pointer hover:text-green-400 rounded-full hover:scale-110"
   style={{
     backgroundColor: 'rgb(124, 101, 193)', // Purple background
     padding: '0.25rem 0.5rem', // Padding for rounded effect
@@ -523,7 +523,7 @@ function LaunchButton({ cast, isVerified }: { cast: Post; isVerified: boolean })
     return (
       <>
         <p
-          className="text-sm text-foreground underline decoration-dotted font-semibold cursor-pointer hover:text-zinc-400"
+          className="text-sm text-foreground font-semibold cursor-pointer hover:text-zinc-400"
           onClick={() => setVerifyOpen(true)}
         >
           Launch
@@ -631,7 +631,7 @@ function RevealButton({
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
       <p
-  className="text-sm text-foreground underline decoration-dotted font-semibold cursor-pointer hover:text-green-400 rounded-full"
+  className="text-sm text-foreground font-semibold cursor-pointer hover:text-green-400 rounded-full"
   style={{
     backgroundColor: 'rgb(124, 101, 193)', // Purple background
     padding: '0.25rem 0.5rem', // Padding for rounded effect
