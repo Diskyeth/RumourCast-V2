@@ -85,7 +85,7 @@ export function CredentialsSelect({
                 <div className="flex flex-row items-center gap-2">
                   <span className="font-semibold">
                     {`${credential.metadata?.balance ? Number.parseFloat(formatEther(BigInt(credential.metadata.balance))).toLocaleString() : 'Unknown'} ${
-                      credential.metadata.tokenAddress === TOKEN_ADDRESS
+                      credential.metadata.tokenAddress?.toLowerCase() === TOKEN_ADDRESS.toLowerCase()
                         ? 'RUMOUR'
                         : credential.metadata.tokenAddress
                     }`}
