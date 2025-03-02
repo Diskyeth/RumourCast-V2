@@ -279,7 +279,7 @@ export function PostDisplay({
             <div className="flex flex-row gap-2 items-center" onClick={(e) => e.preventDefault()}>
               {address && (
                 <p
-                  className="text-sm button-secondary rounded-full font-semibold cursor-pointer hover:text-zinc-400"
+                  className="text-sm rounded-full font-semibold cursor-pointer hover:text-zinc-400"
                   style={{
                     backgroundColor: 'rgb(124, 101, 193)',
                     padding: '0.25rem 0.5rem',
@@ -292,7 +292,7 @@ export function PostDisplay({
               )}
               {address && (
                 <p
-                  className="text-sm button-secondary rounded-full font-semibold cursor-pointer hover:text-zinc-400"
+                  className="text-sm rounded-full font-semibold cursor-pointer hover:text-zinc-400"
                   style={{
                     backgroundColor: 'rgb(124, 101, 193)',
                     padding: '0.25rem 0.5rem',
@@ -311,7 +311,7 @@ export function PostDisplay({
                   href={`https://warpcast.com/~/conversations/${cast.hash}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-sm button-secondary rounded-full font-semibold cursor-pointer hover:text-zinc-400"
+                  className="text-sm rounded-full font-semibold cursor-pointer hover:text-zinc-400"
                   style={{
                     backgroundColor: 'rgb(124, 101, 193)',
                     padding: '0.25rem 0.5rem',
