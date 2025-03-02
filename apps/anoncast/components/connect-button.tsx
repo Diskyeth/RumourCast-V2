@@ -60,6 +60,11 @@ export const ConnectButton = () => {
                   type="button"
                   onClick={openAccountModal}
                   className="flex flex-row rounded-full overflow-hidden items-center hover:scale-105 transition-all duration-300 gradient-border-wrapper sm:space-x-2 space-x-1 h-14"
+                  style={{
+                    background: "rgba(0, 0, 0, 0.7) !important",
+                    backdropFilter: "blur(8px)", // Adjust blur intensity as needed
+                    WebkitBackdropFilter: "blur(8px)", // Ensures support in Safari
+                  }}
                 >
                   <Balance />
                   <div
