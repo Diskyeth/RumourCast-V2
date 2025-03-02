@@ -242,11 +242,13 @@ function UploadImage() {
         throw new Error(response.error.message)
       }
 
-      if (!response.data?.data?.link) {
+      // ✅ Fix: Expect `imageUrl` from backend, not `data.data.link`
+      if (!response.data?.imageUrl) {
+        console.error("Unexpected API response:", response.data)
         throw new Error('Invalid response format')
       }
 
-      setImage(response.data.data.link)
+      setImage(response.data.imageUrl)
       setError(null)
 
       if (fileInputRef.current) {
@@ -276,8 +278,7 @@ function UploadImage() {
           style={{ display: 'none' }}
           onChange={handleImageSelect}
         />
-        {loading && <Loader2 className="animate-spin" />}
-        {!loading && <Image />}
+        {loading ? <Loader2 className="animate-spin" /> : <Image />}
       </TooltipButton>
 
       {error && (
@@ -295,12 +296,7 @@ function RemoveableImage() {
   return (
     <div className="relative">
       <img src={image} alt="Uploaded" />
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => setImage(null)}
-        className="absolute top-1 right-1"
-      >
+      <Button variant="outline" size="icon" onClick={() => setImage(null)} className="absolute top-1 right-1">
         <X />
       </Button>
     </div>
