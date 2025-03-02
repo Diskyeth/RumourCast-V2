@@ -292,7 +292,7 @@ function UploadImage() {
       </TooltipButton>
 
       {error && (
-        <div className="absolute top-12 left-0 z-10 bg-red-100 text-red-700 px-3 py-2 rounded-md text-sm">
+        <div className="absolute top-12 left-0 z-10 bg-red-100 text-red-700 px-3 py-2 rounded-xl text-sm">
           {error}
         </div>
       )}
@@ -384,7 +384,7 @@ function RemoveableEmbed() {
   return (
     <div className="relative">
       <div
-        className="w-full border rounded-md overflow-hidden cursor-pointer"
+        className="w-full border rounded-xl overflow-hidden cursor-pointer"
         onClick={() => window.open(embed, '_blank')}
       >
         {image && (
@@ -471,7 +471,7 @@ function RemoveableParent() {
   return (
     <div className="relative">
       <div
-        className="w-full border rounded-md p-2 overflow-hidden cursor-pointer flex flex-col gap-2"
+        className="w-full border rounded-xl p-2 overflow-hidden cursor-pointer flex flex-col gap-2"
         onClick={() =>
           window.open(
             `https://warpcast.com/${parent.author.username}/${parent.hash}`,
@@ -485,7 +485,7 @@ function RemoveableParent() {
             <img
               src={parent.author.pfp_url}
               alt={parent.author.username}
-              className="w-6 h-6 rounded-md"
+              className="w-6 h-6 rounded-xl"
             />
             <p className="text-md font-bold">{parent.author.username}</p>
           </div>
@@ -644,7 +644,7 @@ function RemoveableQuote() {
   return (
     <div className="relative">
       <div
-        className="w-full border rounded-md p-2 overflow-hidden cursor-pointer flex flex-col gap-2"
+        className="w-full border rounded-xl p-2 overflow-hidden cursor-pointer flex flex-col gap-2"
         onClick={() =>
           window.open(
             `https://warpcast.com/${quote.author.username}/${quote.hash}`,
@@ -657,7 +657,7 @@ function RemoveableQuote() {
           <img
             src={quote.author.pfp_url}
             alt={quote.author.username}
-            className="w-6 h-6 rounded-md"
+            className="w-6 h-6 rounded-xl"
           />
           <p className="text-md font-bold">{quote.author.username}</p>
         </div>

@@ -137,7 +137,7 @@ export function PostDisplay({
   const sanitizedText = cleanText(cast.text)
 
   return (
-    <div className="relative [overflow-wrap:anywhere] border border-[#C848FF] rounded-2xl overflow-hidden bg-[rgba(0,0,0,0.1)] backdrop-blur-sm">
+    <div className="relative [overflow-wrap:anywhere] border border-[#C848FF] rounded-2xl overflow-hidden bg-[rgba(0,0,0,0.30)] backdrop-blur-sm">
     <div className="flex flex-row gap-4  p-4 sm:p-6  ">
       <div className="flex flex-col gap-2 w-full">
         <div className="flex flex-row gap-4 justify-between">
@@ -234,7 +234,7 @@ export function PostDisplay({
                 >
                   <img
                     src={embed.cast.author?.pfp_url}
-                    className="w-10 h-10 rounded-md"
+                    className="w-10 h-10 rounded-xl"
                     alt="pfp"
                   />
                   <div className="flex flex-col gap-2 w-full">
@@ -312,7 +312,11 @@ export function PostDisplay({
                   href={`https://warpcast.com/~/conversations/${cast.hash}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-sm underline decoration-dotted font-semibold cursor-pointer hover:text-zinc-400"
+                  className="text-sm button-secondary rounded-full font-semibold cursor-pointer hover:text-zinc-400"
+                  style={{
+                    backgroundColor: 'rgba(124, 101, 193, 0.25)',
+                    padding: '0.5rem 1rem',
+                  }}
                 >
                   Launched
                 </a>

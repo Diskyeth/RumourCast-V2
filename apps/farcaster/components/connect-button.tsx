@@ -23,7 +23,7 @@ export const ConnectButton = () => {
   return (
     <div className="flex flex-row rounded-full overflow-hidden items-center hover:scale-105 transition-all duration-300 gradient-border-wrapper sm:space-x-2 space-x-1 h-14">
       <Balance />
-      <div className="text-md font-bold bg-gray-200 text-black rounded-md py-1.5 px-3 m-0.5">
+      <div className="text-md font-bold bg-gray-200 text-black rounded-xl py-1.5 px-3 m-0.5">
         {context?.user?.username}
       </div>
     </div>
