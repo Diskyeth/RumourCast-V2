@@ -256,13 +256,13 @@ export function PostDisplay({
           })}
           <div className="flex flex-col gap-4 sm:flex-row justify-between">
             <div className="flex flex-row items-center gap-2 mt-2">
-              <div className="flex flex-row items-center gap-1.5 ">
+              <div className="flex flex-row items-center gap-1.5">
                 <MessageCircle size={16} className="text-zinc-400" />
                 <p className="text-sm font-medium text-foreground">
                   {formatNumber(cast.replies.count)}
                 </p>
               </div>
-              <div className="flex flex-row items-center gap-1.5 ">
+              <div className="flex flex-row items-center gap-1.5">
                 <RefreshCcw size={16} className="text-zinc-400" />
                 <p className="text-sm font-medium text-foreground">
                   {formatNumber(cast.reactions.recasts_count)}
@@ -275,32 +275,31 @@ export function PostDisplay({
                 </p>
               </div>
             </div>
-
-            <div
-              className=" flex flex-row gap-3 items-center"
-              onClick={(e) => e.preventDefault()}
-            >
+          
+            <div className="flex flex-row gap-2 items-center" onClick={(e) => e.preventDefault()}>
               {address && (
                 <p
-                className="text-sm button-secondary rounded-full font-semibold cursor-pointer hover:text-zinc-400"
-                style={{
-                  backgroundColor: 'rgba(124, 101, 193, 0.25)',
-                  padding: '0.5rem 1rem',
-                }}
-                onClick={quote}
-              >
+                  className="text-sm button-secondary rounded-full font-semibold cursor-pointer hover:text-zinc-400"
+                  style={{
+                    backgroundColor: 'rgb(124, 101, 193)',
+                    padding: '0.25rem 0.5rem',
+                    color: 'white', // Ensuring text is readable
+                  }}
+                  onClick={quote}
+                >
                   Quote
                 </p>
               )}
               {address && (
                 <p
-                className="text-sm button-secondary rounded-full font-semibold cursor-pointer hover:text-zinc-400"
-                style={{
-                  backgroundColor: 'rgba(124, 101, 193, 0.25)',
-                  padding: '0.5rem 1rem',
-                }}
-                onClick={reply}
-              >
+                  className="text-sm button-secondary rounded-full font-semibold cursor-pointer hover:text-zinc-400"
+                  style={{
+                    backgroundColor: 'rgb(124, 101, 193)',
+                    padding: '0.25rem 0.5rem',
+                    color: 'white', // Ensuring text is readable
+                  }}
+                  onClick={reply}
+                >
                   Reply
                 </p>
               )}
@@ -314,8 +313,9 @@ export function PostDisplay({
                   rel="noreferrer"
                   className="text-sm button-secondary rounded-full font-semibold cursor-pointer hover:text-zinc-400"
                   style={{
-                    backgroundColor: 'rgba(124, 101, 193, 0.25)',
-                    padding: '0.5rem 1rem',
+                    backgroundColor: 'rgb(124, 101, 193)',
+                    padding: '0.25rem 0.5rem',
+                    color: 'white', // Ensuring text is readable
                   }}
                 >
                   Launched
@@ -324,9 +324,9 @@ export function PostDisplay({
               {canDelete && <DeleteButton tweetId={tweetId} isVerified={has2M} />}
             </div>
           </div>
+          </div>
         </div>
       </div>
-    </div>
   )
 }
 
