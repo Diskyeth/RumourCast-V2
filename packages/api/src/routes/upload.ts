@@ -79,41 +79,36 @@ export const uploadRoutes = createElysia({ prefix: '/upload' }).post(
 
 async function uploadImage(file: File) {
   const formData = new FormData()
-  formData.append('image', file) // ImgBB requires "image"
+  formData.append('image', file)
 
-  const apiKey = process.env.UPLOAD_API_KEY ?? ''
-  if (!apiKey) {
-    throw new Error('UPLOAD_API_KEY is missing! Set it in your environment variables.')
-  }
-
-  console.log('Uploading image with API Key:', apiKey) // Debugging log
-
-  const response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
+  const response = await fetch(`https://api.imgbb.com/1/upload?key=${process.env.UPLOAD_API_KEY ?? ''}`, {
     method: 'POST',
+    headers: {
+      Accept: 'application/json',
+    },
     body: formData,
   })
 
-  const result = await response.text();
-  console.log('Raw Response:', result); // Debugging output
+  if (!response.ok) {
+    const errorText = await response.text()
+    throw new Error(`Upload failed: ${errorText}`)
+  }
 
-  try {
-    const jsonResponse = JSON.parse(result);
+  const jsonResponse = await response.json()
+  console.log('ImgBB Raw Response:', JSON.stringify(jsonResponse, null, 2)) // Debugging log
 
-    if (!jsonResponse || jsonResponse.status !== 200) {
-      throw new Error(`Upload failed: ${jsonResponse.error?.message || 'Unknown error'}`);
-    }
+  // Validate response structure
+  if (!jsonResponse.data || !jsonResponse.data.url) {
+    throw new Error(`Invalid response format: ${JSON.stringify(jsonResponse)}`)
+  }
 
-    return {
-      success: true,
-      message: 'Upload successful',
-      imageUrl: jsonResponse.data.url, // Main image URL
-      thumbnailUrl: jsonResponse.data.thumb?.url ?? null, // Thumbnail URL
-      width: jsonResponse.data.width,
-      height: jsonResponse.data.height,
-      size: jsonResponse.data.size,
-      deleteUrl: jsonResponse.data.delete_url, // Deletion link
-    };
-  } catch (error) {
-    throw new Error(`Invalid response format: ${result}`);
+  return {
+    success: true,
+    imageUrl: jsonResponse.data.url, // Direct link to the image
+    displayUrl: jsonResponse.data.display_url, // Publicly viewable link
+    deleteUrl: jsonResponse.data.delete_url, // Deletion URL if needed
+    width: jsonResponse.data.width,
+    height: jsonResponse.data.height,
+    size: jsonResponse.data.size,
   }
 }
