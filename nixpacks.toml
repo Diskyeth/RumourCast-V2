@@ -10,4 +10,4 @@ cmds = []
 cmds = ["bun i --no-save"]
 
 [start]
-cmd = "bun run api:start"
+cmd = "bun run start"

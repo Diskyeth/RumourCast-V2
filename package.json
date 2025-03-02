@@ -13,7 +13,8 @@
     "credentials:test": "bun run --filter @anonworld/credentials test-circuits",
     "db:push": "bun run --filter @anonworld/api db:push",
     "updates": "bun run --filter @anonworld/api updates",
-    "watch-farcaster": "bun run --filter @anonworld/api watch-farcaster"
+    "watch-farcaster": "bun run --filter @anonworld/api watch-farcaster",
+    "start": "bun run updates & bun run api:start"
   },
   "dependencies": {
     "@farcaster/frame-sdk": "^0.0.25",

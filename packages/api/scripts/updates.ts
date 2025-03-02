@@ -98,7 +98,8 @@ const main = async () => {
   let twitterWaitUntilTimestamp: number | undefined = undefined
   while (true) {
     try {
-      await handleFarcasterPosts()
+      // We don't have an anonbot equivalent handle currently
+      // await handleFarcasterPosts()
       if (
         twitterWaitUntilTimestamp === undefined ||
         twitterWaitUntilTimestamp < new Date().getTime() / 1000
