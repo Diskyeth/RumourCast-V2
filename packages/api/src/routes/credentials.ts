@@ -18,6 +18,8 @@ export const credentialsRoutes = createElysia({ prefix: '/credentials' })
   .post(
     '/',
     async ({ body }) => {
+      console.time('total_credential_creation')
+      console.time('validation')
       if (!body.type || !body.version) {
         throw new Error('Invalid type or version')
       }
@@ -25,7 +27,9 @@ export const credentialsRoutes = createElysia({ prefix: '/credentials' })
       const credentialType = body.type as CredentialType
       const manager = new CredentialsManager()
       const circuit = manager.getVerifier(credentialType, body.version)
+      console.timeEnd('validation')
 
+      console.time('verify_proof')
       const verified = await circuit.verifyProof({
         proof: new Uint8Array(body.proof),
         publicInputs: body.publicInputs,
@@ -33,23 +37,31 @@ export const credentialsRoutes = createElysia({ prefix: '/credentials' })
       if (!verified) {
         throw new Error('Invalid proof')
       }
+      console.timeEnd('verify_proof')
 
+      console.time('check_existing')
       let credentialId = ''
       const id = keccak256(new Uint8Array(body.proof))
       const existingCredential = await db.credentials.get(id)
       if (existingCredential) {
+        console.timeEnd('check_existing')
+        console.timeEnd('total_credential_creation')
         return {
           ...existingCredential,
           proof: undefined,
         }
       }
+      console.timeEnd('check_existing')
 
+      console.time('get_metadata_and_block')
       const metadata = circuit.parseData(body.publicInputs)
       const chain = getChain(metadata.chainId)
       const block = await chain.client.getBlock({
         blockNumber: BigInt(metadata.blockNumber),
       })
+      console.timeEnd('get_metadata_and_block')
 
+      console.time('verify_by_type')
       switch (credentialType) {
         case CredentialType.ERC20_BALANCE:
         case CredentialType.ERC721_BALANCE: {
@@ -58,11 +70,13 @@ export const credentialsRoutes = createElysia({ prefix: '/credentials' })
           credentialId = `${body.type}:${typedMetadata.chainId}:${address.toLowerCase()}`
           const slot = typedMetadata.balanceSlot
 
+          console.time('token_balance_proof')
           const ethProof = await chain.client.getProof({
             address: address as `0x${string}`,
             storageKeys: [keccak256(concat([pad(zeroAddress), pad(toHex(slot))]))],
             blockNumber: BigInt(metadata.blockNumber),
           })
+          console.timeEnd('token_balance_proof')
 
           if (ethProof.storageHash !== typedMetadata.storageHash) {
             throw new Error('Invalid storage hash')
@@ -74,11 +88,13 @@ export const credentialsRoutes = createElysia({ prefix: '/credentials' })
           credentialId = `${body.type}:${typedMetadata.chainId}:${typedMetadata.fid}`
           const slot = typedMetadata.storageSlot
 
+          console.time('farcaster_proof')
           const ethProof = await chain.client.getProof({
             address: typedMetadata.contractAddress as `0x${string}`,
             storageKeys: [keccak256(concat([pad(zeroAddress), pad(toHex(slot))]))],
             blockNumber: BigInt(metadata.blockNumber),
           })
+          console.timeEnd('farcaster_proof')
 
           if (ethProof.storageHash !== typedMetadata.storageHash) {
             throw new Error('Invalid storage hash')
@@ -96,12 +112,16 @@ export const credentialsRoutes = createElysia({ prefix: '/credentials' })
           break
         }
       }
+      console.timeEnd('verify_by_type')
 
+      console.time('get_parent')
       let parent: Credential | null = null
       if (body.parentId) {
         parent = await db.credentials.get(body.parentId)
       }
+      console.timeEnd('get_parent')
 
+      console.time('create_credential')
       const credential = await db.credentials.create({
         id,
         hash: keccak256(id),
@@ -117,11 +137,15 @@ export const credentialsRoutes = createElysia({ prefix: '/credentials' })
         parent_id: parent?.parent_id ?? parent?.id ?? id,
         vault_id: parent?.vault_id,
       })
+      console.timeEnd('create_credential')
 
+      console.time('reverify_parent')
       if (parent?.id) {
         await db.credentials.reverify(parent.id, credential.id)
       }
+      console.timeEnd('reverify_parent')
 
+      console.timeEnd('total_credential_creation')
       return {
         ...credential,
         proof: undefined,
