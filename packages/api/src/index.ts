@@ -35,11 +35,3 @@ const app = createElysia()
 app.listen(3001)
 
 console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`)
-
-// Initialize verifier in background
-console.time('initVerifier')
-initVerifier()
-  .then(() => {
-    console.timeEnd('initVerifier')
-  })
-  .catch(console.error)
