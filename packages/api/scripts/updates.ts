@@ -114,20 +114,19 @@ const main = async () => {
 
       // We don't have an anonbot equivalent handle currently
       await safeAwait(handleFarcasterPosts)
-      // await handleFarcasterPosts()
       // On twitter as well
-      await safeAwait(async () => {
-        if (
-          twitterWaitUntilTimestamp === undefined ||
-          twitterWaitUntilTimestamp < new Date().getTime() / 1000
-        ) {
-          twitterWaitUntilTimestamp = await handleTwitterPosts()
-        } else {
-          console.log(
-            `[updates] [twitter] waiting for ${twitterWaitUntilTimestamp - new Date().getTime() / 1000} seconds`
-          )
-        }
-      })
+      // await safeAwait(async () => {
+      //   if (
+      //     twitterWaitUntilTimestamp === undefined ||
+      //     twitterWaitUntilTimestamp < new Date().getTime() / 1000
+      //   ) {
+      //     twitterWaitUntilTimestamp = await handleTwitterPosts()
+      //   } else {
+      //     console.log(
+      //       `[updates] [twitter] waiting for ${twitterWaitUntilTimestamp - new Date().getTime() / 1000} seconds`
+      //     )
+      //   }
+      // })
 
       if (i % 10 === 0) {
         await safeAwait(updateTokens)
