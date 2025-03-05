@@ -93,37 +93,53 @@ const updateTwitterAccounts = async () => {
   }
 }
 
+const safeAwait = async <T>(fn: () => Promise<T>): Promise<T | undefined> => {
+  try {
+    return await fn()
+  } catch (error) {
+    console.error('[safeAwait]', error)
+    return undefined
+  }
+}
+
+
 const main = async () => {
   let i = 0
   let twitterWaitUntilTimestamp: number | undefined = undefined
   while (true) {
     try {
-      // We don't have an anonbot equivalent handle currently
-      // await handleFarcasterPosts()
-      if (
-        twitterWaitUntilTimestamp === undefined ||
-        twitterWaitUntilTimestamp < new Date().getTime() / 1000
-      ) {
-        twitterWaitUntilTimestamp = await handleTwitterPosts()
-      } else {
-        console.log(
-          `[updates] [twitter] waiting for ${twitterWaitUntilTimestamp - new Date().getTime() / 1000} seconds`
-        )
-      }
-      if (i % 10 === 0) {
-        await updateTokens()
-      }
       if (i % 2 === 0) {
-        await updateFeeds()
+        await safeAwait(updateFeeds)
+      }
+
+      // We don't have an anonbot equivalent handle currently
+      await safeAwait(handleFarcasterPosts)
+      // await handleFarcasterPosts()
+      // On twitter as well
+      await safeAwait(async () => {
+        if (
+          twitterWaitUntilTimestamp === undefined ||
+          twitterWaitUntilTimestamp < new Date().getTime() / 1000
+        ) {
+          twitterWaitUntilTimestamp = await handleTwitterPosts()
+        } else {
+          console.log(
+            `[updates] [twitter] waiting for ${twitterWaitUntilTimestamp - new Date().getTime() / 1000} seconds`
+          )
+        }
+      })
+
+      if (i % 10 === 0) {
+        await safeAwait(updateTokens)
       }
       if (i % 20 === 0) {
-        await updateFarcasterAccounts()
-        await updateTwitterAccounts()
+        await safeAwait(updateFarcasterAccounts)
+        await safeAwait(updateTwitterAccounts)
       }
       if (i % 100 === 0) {
-        await updateCommunities()
+        await safeAwait(updateCommunities)
         console.log('[leaderboard] updating leaderboard')
-        await updateLeaderboard()
+        await safeAwait(updateLeaderboard)
       }
     } catch (error) {
       console.error('[error]', error)
