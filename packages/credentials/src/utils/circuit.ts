@@ -2,17 +2,29 @@ import { CompiledCircuit, type Noir } from '@noir-lang/noir_js'
 import { UltraHonkBackend, BarretenbergVerifier, ProofData } from '@aztec/bb.js'
 
 type ProverModules = {
-  Noir: typeof Noir
-  UltraHonkBackend: typeof UltraHonkBackend
+  backend: UltraHonkBackend
+  noir: Noir
 }
 
-type VerifierModules = {
-  BarretenbergVerifier: typeof BarretenbergVerifier
+type Verifier = {
+  verifier: BarretenbergVerifier
+}
+
+let _initVerifier: Promise<Verifier> | null = null
+export const initVerifier = async () => {
+  if (!_initVerifier) {
+    _initVerifier = (async () => {
+      const { BarretenbergVerifier } = await import('@aztec/bb.js')
+      const verifier = new BarretenbergVerifier({ crsPath: process.env.TEMP_DIR })
+      await verifier.instantiate()
+      return { verifier }
+    })()
+  }
+  return _initVerifier
 }
 
 export abstract class Circuit {
   private proverPromise: Promise<ProverModules> | null = null
-  private verifierPromise: Promise<VerifierModules> | null = null
 
   private circuit: CompiledCircuit
   private vkey: Uint8Array
@@ -29,39 +41,28 @@ export abstract class Circuit {
           import('@noir-lang/noir_js'),
           import('@aztec/bb.js'),
         ])
+        const backend = new UltraHonkBackend(this.circuit.bytecode)
+        await backend.instantiate()
+        const noir = new Noir(this.circuit)
         return {
-          Noir,
-          UltraHonkBackend,
+          backend,
+          noir,
         }
       })()
     }
     return this.proverPromise
   }
 
-  async initVerifier(): Promise<VerifierModules> {
-    if (!this.verifierPromise) {
-      this.verifierPromise = (async () => {
-        const { BarretenbergVerifier } = await import('@aztec/bb.js')
-        return { BarretenbergVerifier }
-      })()
-    }
-    return this.verifierPromise
-  }
-
   async verify(proofData: ProofData) {
-    const { BarretenbergVerifier } = await this.initVerifier()
+    const { verifier } = await initVerifier()
 
-    const verifier = new BarretenbergVerifier({ crsPath: process.env.TEMP_DIR })
     const result = await verifier.verifyUltraHonkProof(proofData, this.vkey)
 
     return result
   }
 
   async generate(input: Record<string, any>) {
-    const { Noir, UltraHonkBackend } = await this.initProver()
-
-    const backend = new UltraHonkBackend(this.circuit.bytecode)
-    const noir = new Noir(this.circuit)
+    const { backend, noir } = await this.initProver()
 
     const { witness } = await noir.execute(input)
 

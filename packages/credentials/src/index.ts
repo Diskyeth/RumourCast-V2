@@ -4,6 +4,7 @@ import { TokenBalanceVerifier } from './verifiers/token-balance'
 import { FarcasterFidVerifier } from './verifiers/farcaster-fid'
 import { NativeBalanceVerifier } from './verifiers/native-balance'
 export type { Circuit } from './utils/circuit'
+export { initVerifier } from './utils/circuit'
 export * from './types'
 
 type VerifierConstructor = new (type: CredentialType, version: string) => Verifier

@@ -1,3 +1,5 @@
+import { initVerifier } from '@anonworld/credentials'
+
 import { createElysia } from './utils'
 import { actionsRoutes } from './routes/actions'
 import { postsRoutes } from './routes/posts'
@@ -33,3 +35,11 @@ const app = createElysia()
 app.listen(3001)
 
 console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`)
+
+// Initialize verifier in background
+console.time('initVerifier')
+initVerifier()
+  .then(() => {
+    console.timeEnd('initVerifier')
+  })
+  .catch(console.error)
