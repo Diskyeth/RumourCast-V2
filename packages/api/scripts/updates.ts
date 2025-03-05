@@ -113,7 +113,7 @@ const main = async () => {
       }
 
       // We don't have an anonbot equivalent handle currently
-      await safeAwait(handleFarcasterPosts)
+      // await safeAwait(handleFarcasterPosts)
       // On twitter as well
       // await safeAwait(async () => {
       //   if (
