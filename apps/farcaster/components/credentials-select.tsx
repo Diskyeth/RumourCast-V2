@@ -186,7 +186,7 @@ export function VerifyCredential({
             onValueChange={([balance]) => setBalance(balance)}
             min={minBalance}
             max={maxBalance}
-            step={1000000}
+            step={100000}
           />
           <div className="flex flex-row items-center justify-between">
             <p className="text-sm text-zinc-400">{minBalance.toLocaleString()}</p>
