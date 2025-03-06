@@ -1,3 +1,5 @@
+import { initVerifier } from '@anonworld/credentials'
+
 import { createElysia } from './utils'
 import { actionsRoutes } from './routes/actions'
 import { postsRoutes } from './routes/posts'

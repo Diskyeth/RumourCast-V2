@@ -18,6 +18,12 @@ const Verifiers: Record<CredentialType, VerifierConstructor> = {
 export class CredentialsManager {
   private verifiers: Record<string, Record<string, Verifier>> = {}
 
+  constructor() {
+    // puck erc20 and erc721 verifiers so they can cache imports in the background
+    this.getVerifier(CredentialType.ERC20_BALANCE)
+    this.getVerifier(CredentialType.ERC721_BALANCE)
+  }
+
   getVerifier<T extends CredentialType>(circuitType: T, circuitVersion = 'latest') {
     if (!this.verifiers[circuitType]) {
       this.verifiers[circuitType] = {}

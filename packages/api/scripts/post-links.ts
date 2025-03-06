@@ -84,7 +84,7 @@ export async function handleTwitterPosts() {
   console.log(`[post-links] found ${twitterPosts.length} twitter posts missing links`)
 
   for (const post of twitterPosts) {
-    const link = `https://anon.world/posts/${post.post_relationships.post_hash}`
+    const link = `https://www.rumourcast.fun/posts/${post.post_relationships.post_hash}`
     const replyToAccount = post.post_relationships.target_account
     const replyToTweetId = post.post_relationships.target_id
     const tweet = await twitter.postTweet(POST_ACCOUNT_TWITTER_USERNAME, {

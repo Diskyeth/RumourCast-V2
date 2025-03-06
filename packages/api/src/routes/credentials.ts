@@ -14,6 +14,8 @@ import { NativeBalancePublicData } from '@anonworld/credentials/src/verifiers/na
 import { claimNotesTable } from '../db/schema'
 import { inArray } from 'drizzle-orm'
 
+const manager = new CredentialsManager()
+
 export const credentialsRoutes = createElysia({ prefix: '/credentials' })
   .post(
     '/',
@@ -23,7 +25,6 @@ export const credentialsRoutes = createElysia({ prefix: '/credentials' })
       }
 
       const credentialType = body.type as CredentialType
-      const manager = new CredentialsManager()
       const circuit = manager.getVerifier(credentialType, body.version)
 
       const verified = await circuit.verifyProof({
