@@ -252,11 +252,13 @@ function UploadImage() {
         throw new Error(response.error.message)
       }
 
-      if (!response.data?.data?.link) {
+      // ✅ Fix: Expect `imageUrl` from backend, not `data.data.link`
+      if (!response.data?.imageUrl) {
+        console.error("Unexpected API response:", response.data)
         throw new Error('Invalid response format')
       }
 
-      setImage(response.data.data.link)
+      setImage(response.data.imageUrl)
       setError(null)
 
       if (fileInputRef.current) {
@@ -286,8 +288,7 @@ function UploadImage() {
           style={{ display: 'none' }}
           onChange={handleImageSelect}
         />
-        {loading && <Loader2 className="animate-spin" />}
-        {!loading && <Image />}
+        {loading ? <Loader2 className="animate-spin" /> : <Image />}
       </TooltipButton>
 
       {error && (
@@ -305,12 +306,7 @@ function RemoveableImage() {
   return (
     <div className="relative">
       <img src={image} alt="Uploaded" />
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => setImage(null)}
-        className="absolute top-1 right-1"
-      >
+      <Button variant="outline" size="icon" onClick={() => setImage(null)} className="absolute top-1 right-1">
         <X />
       </Button>
     </div>
@@ -489,7 +485,7 @@ function RemoveableParent() {
             <img
               src={parent.author.pfp_url}
               alt={parent.author.username}
-              className="w-6 h-6 rounded-full"
+              className="w-6 h-6 rounded-xl"
             />
             <p className="text-md font-bold">{parent.author.username}</p>
           </div>
@@ -661,7 +657,7 @@ function RemoveableQuote() {
           <img
             src={quote.author.pfp_url}
             alt={quote.author.username}
-            className="w-6 h-6 rounded-full"
+            className="w-6 h-6 rounded-xl"
           />
           <p className="text-md font-bold">{quote.author.username}</p>
         </div>
@@ -725,7 +721,7 @@ function Credential() {
           Post Credential <span className="text-red-500">*</span>
         </span>
         <span className="text-sm text-zinc-400">
-        RumourCast requires a verified credential for at least 10.000.00,000 $RUMOUR.
+          RumourCast requires a verified credential for at least 100M $RUMOUR.
         </span>
       </div>
       <CredentialsSelect selected={credential} onSelect={setCredential} />
