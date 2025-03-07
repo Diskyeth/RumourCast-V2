@@ -37,6 +37,7 @@ import { Input } from './ui/input'
 import { timeAgo, TOKEN_ADDRESS } from '@/lib/utils'
 import { useAccount } from 'wagmi'
 
+
 export function CredentialsSelect({
   selected,
   onSelect,
@@ -60,7 +61,12 @@ export function CredentialsSelect({
 
   useEffect(() => {
     onSelect(anonCredentials[0] ?? null)
-  }, [])
+  }, [anonCredentials])
+
+  // Debugging log to check when `selected` changes
+  useEffect(() => {
+    console.log('Credential selected:', selected)
+  }, [selected])
 
   return (
     <>
@@ -114,6 +120,7 @@ export function CredentialsSelect({
     </>
   )
 }
+
 
 export function VerifyCredential({
   open,
