@@ -42,7 +42,7 @@ class ZerionService {
     while (retries < maxRetries) {
       const headers: Record<string, string> = {
         accept: 'application/json',
-        authorization: `Basic ${this.apiKey}`,
+        authorization: `Bearer ${this.apiKey}`,
       }
       const response = await fetch(`${this.baseUrl}${endpoint}`, {
         headers,
