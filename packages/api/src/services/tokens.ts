@@ -138,7 +138,7 @@ class TokensService {
       market_cap: Math.round(zerionToken.attributes.market_data.market_cap ?? 0),
       total_supply: Math.round(zerionToken.attributes.market_data.total_supply ?? 0),
       holders: simpleHashToken?.holder_count ?? 0,
-      balance_slot: null,
+      balance_slot: 0,
       type: tokenAddress === zeroAddress ? 'NATIVE' : 'ERC20',
     }
     await db.tokens.create(token)
@@ -168,7 +168,7 @@ class TokensService {
       market_cap: 0,
       total_supply: 0,
       holders: 0,
-      balance_slot: null,
+      balance_slot: 0,
       type: ContractType.ERC20,
       platform: args.platform,
     }
