@@ -31,11 +31,11 @@ export function PostActionsContent({
             (credential) => credential.credential_id === action.credential_id
           ) ||
           (action.credential_id ===
-            'ERC20_BALANCE:8453:0x0db510e79909666d6dec7f5e49370838c16d950f' &&
+            'ERC20_BALANCE:8453:0x1CEcCbE4d3a19cB62DbBd09756A52Cfe5394Fab8' &&
             credentials.some(
               (credential) =>
                 credential.credential_id ===
-                'ERC20_BALANCE:8453:0x0db510e79909666d6dec7f5e49370838c16d950f'
+                'ERC20_BALANCE:8453:0x1CEcCbE4d3a19cB62DbBd09756A52Cfe5394Fab8'
             ))
       )
     if (!validActions) return []

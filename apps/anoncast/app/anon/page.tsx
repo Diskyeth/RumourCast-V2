@@ -25,7 +25,7 @@ function Inner() {
           <div className="flex flex-row gap-2 justify-between ">
             <div className="flex flex-row gap-2 flex-wrap text-zinc-400">
               <a
-                href="https://basescan.org/token/0x0db510e79909666d6dec7f5e49370838c16d950f"
+                href="https://basescan.org/token/0x1CEcCbE4d3a19cB62DbBd09756A52Cfe5394Fab8"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm decoration-dotted underline font-medium inline"
@@ -33,7 +33,7 @@ function Inner() {
                 Basescan
               </a>
               <a
-                href="https://app.interface.social/token/8453/0x0db510e79909666d6dec7f5e49370838c16d950f"
+                href="https://app.interface.social/token/8453/0x1CEcCbE4d3a19cB62DbBd09756A52Cfe5394Fab8"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm decoration-dotted underline font-medium inline"
@@ -49,7 +49,7 @@ function Inner() {
                 DEX Screener
               </a>
               <a
-                href="https://app.uniswap.org/swap?outputCurrency=0x0Db510e79909666d6dEc7f5e49370838c16D950f&chain=base"
+                href="https://app.uniswap.org/swap?outputCurrency=0x1CEcCbE4d3a19cB62DbBd09756A52Cfe5394Fab8&chain=base"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm decoration-dotted underline font-medium inline"
