@@ -20,8 +20,8 @@ class TokensService {
     }
   }
   async getOrCreateERC20(chainId: number, tokenAddress: string) {
-  const token = await redis.getToken(chainId, tokenAddress)
-  if (token) return JSON.parse(token)
+    // const token = await redis.getToken(chainId, tokenAddress)
+    // if (token) return JSON.parse(token)
     return this.syncERC20(chainId, tokenAddress)
   }
 
