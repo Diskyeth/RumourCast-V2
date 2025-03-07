@@ -20,7 +20,7 @@ function Inner() {
   useEffect(() => {
     async function fetchCasts() {
       try {
-        const response = await fetch('https://rumourreporter-rumourreporter-agent.up.railway.app/casts') // API to fetch recent casts
+        const response = await fetch('https://rumournews-rumournews.up.railway.app/casts') // API to fetch recent casts
         const data = await response.json()
         setCasts(data.casts)
       } catch (error) {
@@ -32,7 +32,7 @@ function Inner() {
 
     fetchCasts()
 
-    const eventSource = new EventSource('https://rumourreporter-rumourreporter-agent.up.railway.app/webhook') // Webhook for real-time updates
+    const eventSource = new EventSource('https://rumournews-rumournews.up.railway.app/webhook') // Webhook for real-time updates
     eventSource.onmessage = (event) => {
       const newCast = JSON.parse(event.data)
       setCasts((prevCasts) => [newCast, ...prevCasts])
