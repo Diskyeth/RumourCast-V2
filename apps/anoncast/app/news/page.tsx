@@ -68,12 +68,12 @@ function Inner() {
   }, [])
 
   return (
-    <div className="p-8 relative">
+    <div className="p-8">
       {/* Breaking News Section */}
       {casts.length > 1 && (
-        <div className="w-full px-8 mb-8 grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-min relative z-10">
+        <div className="absolute left-0 right-0 w-full px-8 mb-8 grid grid-cols-1 md:grid-cols-2 gap-6 z-10">
           {[casts[0], casts[1]].map((cast, index) => (
-            <div key={index} className="p-6 border border-red-500 rounded-xl bg-gray-900 text-white shadow-lg">
+            <div key={index} className="p-6 border border-red-500 rounded-xl bg-gray-900 text-white shadow-lg w-full">
               <h2 className="text-xl font-bold text-red-500 mb-2">{index === 0 ? 'Breaking News' : 'Latest Update'}</h2>
               <hr className="border-gray-600 mb-2" />
               <Link href={`/posts/${cast.hash}`}>
@@ -92,14 +92,16 @@ function Inner() {
         </div>
       )}
 
-      <h1 className="text-3xl font-bold mb-6 text-center relative z-10">Latest Farcaster Casts</h1>
+      <div className="relative z-10">
+        <h1 className="text-3xl font-bold mb-6 text-center">Latest Farcaster Casts</h1>
+      </div>
 
       {loading ? (
-        <div className="flex justify-center">
+        <div className="flex justify-center relative z-0">
           <Loader2 className="animate-spin w-8 h-8 text-white" />
         </div>
       ) : (
-        <div className="w-full px-8 relative z-0">
+        <div className="absolute left-0 right-0 w-full px-8 relative z-0">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-min">
             {casts.length === 0 ? (
               <p className="text-gray-500 text-center">No casts available.</p>

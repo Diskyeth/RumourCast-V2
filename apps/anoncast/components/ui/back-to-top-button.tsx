@@ -9,22 +9,22 @@ const BackToTopButton = () => {
   };
 
   return (
-<button
-  onClick={scrollToTop}
-  className="fixed bottom-6 right-6 z-10 w-14 h-14 flex items-center justify-center bg-black/70 text-white rounded-full shadow-xl transition-transform duration-300 hover:scale-105 gradient-border-wrapper"
-  style={{
-    background: "rgba(0, 0, 0, 0.7) !important",
-    backdropFilter: "blur(8px)", // Adjust blur intensity as needed
-    WebkitBackdropFilter: "blur(8px)", // Ensures support in Safari
-  }}
-  aria-label="Back to Top"
->
+    <button
+      onClick={scrollToTop}
+      className="fixed bottom-6 right-6 z-10 w-14 h-14 flex items-center justify-center bg-black/70 text-white rounded-full shadow-xl transition-transform duration-300 hover:scale-105 gradient-border-wrapper"
+      style={{
+        background: "rgba(0, 0, 0, 0.7) !important",
+        backdropFilter: "blur(8px)",
+        WebkitBackdropFilter: "blur(8px)",
+      }}
+      aria-label="Back to Top"
+    >
       <svg
-        width="31"
-        height="31"
-        viewBox="0 0 31 31"
-        fill="none"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24" 
         xmlns="http://www.w3.org/2000/svg"
+        className="flex-shrink-0 mx-auto"
       >
         <path
           fillRule="evenodd"
