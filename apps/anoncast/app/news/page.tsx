@@ -71,10 +71,11 @@ function Inner() {
     <div className="p-8">
       {/* Breaking News Section */}
       {casts.length > 1 && (
-        <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
           {[casts[0], casts[1]].map((cast, index) => (
-            <div key={index} className="p-6 border border-red-500 rounded-xl bg-gray-900 text-white shadow-lg">
+            <div key={index} className="p-6 border border-red-500 rounded-xl bg-gray-900 text-white shadow-lg w-full">
               <h2 className="text-xl font-bold text-red-500 mb-2">{index === 0 ? 'Breaking News' : 'Latest Update'}</h2>
+              <hr className="border-gray-600 mb-2" />
               <Link href={`/posts/${cast.hash}`}>
                 <div className="cursor-pointer hover:bg-gray-800 p-4 rounded-lg">
                   <p className="font-bold text-lg">{cast.text.split('\n')[0]}</p>
@@ -109,6 +110,7 @@ function Inner() {
                   <Link href={`/posts/${cast.hash}`} key={cast.hash}>
                     <div className="p-6 border border-purple-500 rounded-xl bg-gray-900 text-white hover:bg-gray-800 cursor-pointer shadow-lg overflow-hidden break-words max-w-full">
                       <p className="font-bold text-lg break-words">{firstParagraph}</p>
+                      <hr className="border-gray-600 my-2" />
                       {remainingText.length > 0 && (
                         <p className="text-base mt-2 break-words">{remainingText.join('\n')}</p>
                       )}
