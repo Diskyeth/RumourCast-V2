@@ -68,28 +68,32 @@ function Inner() {
   }, [])
 
   return (
-    <div className="max-w-screen-xl mx-auto w-full p-8">
+    <div className="p-8">
       <h1 className="text-3xl font-bold mb-6 text-center">Latest Farcaster Casts</h1>
+      
       {loading ? (
         <div className="flex justify-center">
           <Loader2 className="animate-spin w-8 h-8 text-white" />
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {casts.length === 0 ? (
-            <p className="text-gray-500 text-center">No casts available.</p>
-          ) : (
-            casts.map((cast) => (
-              <Link href={`/posts/${cast.hash}`} key={cast.hash}>
-                <div className="p-6 border border-purple-500 rounded-lg bg-gray-900 text-white hover:bg-gray-800 cursor-pointer shadow-lg">
-                  <p className="break-words">{cast.text}</p>
-                  <span className="text-sm text-gray-400 block mt-2">
-                    {new Date(cast.timestamp).toLocaleString()}
-                  </span>
-                </div>
-              </Link>
-            ))
-          )}
+        // 👉 This div forces 1280px width for the grid
+        <div className="w-full max-w-screen-xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {casts.length === 0 ? (
+              <p className="text-gray-500 text-center">No casts available.</p>
+            ) : (
+              casts.map((cast) => (
+                <Link href={`/posts/${cast.hash}`} key={cast.hash}>
+                  <div className="p-6 border border-purple-500 rounded-lg bg-gray-900 text-white hover:bg-gray-800 cursor-pointer shadow-lg">
+                    <p className="break-words">{cast.text}</p>
+                    <span className="text-sm text-gray-400 block mt-2">
+                      {new Date(cast.timestamp).toLocaleString()}
+                    </span>
+                  </div>
+                </Link>
+              ))
+            )}
+          </div>
         </div>
       )}
     </div>
