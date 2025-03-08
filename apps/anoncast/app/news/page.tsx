@@ -39,7 +39,6 @@ function Inner() {
 
     fetchCasts()
 
-    // Attempt SSE connection
     let eventSource
     try {
       eventSource = new EventSource('https://news.rumourcast.fun/api/casts')
@@ -60,7 +59,6 @@ function Inner() {
       console.error('Failed to connect to SSE:', error)
     }
 
-    // Polling fallback every 10 seconds if SSE fails
     const interval = setInterval(fetchCasts, 10000)
 
     return () => {
@@ -75,14 +73,13 @@ function Inner() {
       {loading ? (
         <Loader2 className="animate-spin" />
       ) : (
-        <div className="flex flex-col gap-4 rounded-xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {casts.length === 0 ? (
             <p className="text-gray-500">No casts available.</p>
           ) : (
             casts.map((cast) => (
               <Link href={`/posts/${cast.hash}`} key={cast.hash}>
-                <div className="p-4 border rounded bg-gray-900 text-white hover:bg-gray-800 cursor-pointer">
-                  <p className="font-semibold">{cast.username}</p>
+                <div className="p-4 border rounded-xl text-white hover:bg-gray-800 cursor-pointer shadow-lg">
                   <p>{cast.text}</p>
                   <span className="text-sm text-gray-400">
                     {new Date(cast.timestamp).toLocaleString()}
