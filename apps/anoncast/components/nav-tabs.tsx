@@ -1,15 +1,21 @@
-import { useCreatePost } from './create-post/context'
-import AnimatedTabs from './post-feed/animated-tabs'
+"use client";
+
+import { usePathname, useRouter } from "next/navigation";
+import AnimatedTabs from "./post-feed/animated-tabs";
 
 export function NavTabs() {
-  const { variant, setVariant } = useCreatePost()
+  const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <AnimatedTabs
-      tabs={['anoncast', 'news']}
-      activeTab={variant}
-      onTabChange={(tab) => setVariant(tab as 'anoncast' | 'news')}
+      tabs={[
+        { id: "anoncast", label: "Anoncast", href: "/anoncast" },
+        { id: "news", label: "News", href: "/news" }
+      ]}
+      activeTab={pathname}
+      onTabChange={(tab) => router.push(tab)}
       layoutId="main-tabs"
     />
-  )
+  );
 }
