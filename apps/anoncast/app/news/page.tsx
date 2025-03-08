@@ -68,7 +68,7 @@ function Inner() {
   }, [])
 
   return (
-    <div className="p-8">
+    <div className="max-w-screen-xl mx-auto w-full p-8">
       <h1 className="text-3xl font-bold mb-6 text-center">Latest Farcaster Casts</h1>
       {loading ? (
         <div className="flex justify-center">
