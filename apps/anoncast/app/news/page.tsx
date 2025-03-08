@@ -28,7 +28,7 @@ function Inner() {
           throw new Error(`HTTP error! Status: ${response.status}`)
         }
         const data = await response.json()
-        console.log('Fetched casts:', data) // Debugging
+        console.log('Fetched casts:', data)
         setCasts(data.casts || [])
       } catch (error) {
         console.error('Error fetching casts:', error)
@@ -45,8 +45,8 @@ function Inner() {
       eventSource.onmessage = (event) => {
         try {
           const newCast = JSON.parse(event.data)
-          console.log('New cast received:', newCast) // Debugging
-          setCasts((prevCasts) => [newCast, ...prevCasts]) // Ensures newest casts go first
+          console.log('New cast received:', newCast)
+          setCasts((prevCasts) => [newCast, ...prevCasts])
         } catch (error) {
           console.error('Error parsing SSE data:', error)
         }
@@ -76,22 +76,36 @@ function Inner() {
           <Loader2 className="animate-spin w-8 h-8 text-white" />
         </div>
       ) : (
-        // 🚀 Maintain full-width div, enforce grid for equal spacing
-        <div className="absolute left-0 right-0 w-full px-8">
+        <div className="w-full px-8">
+          {/* Breaking News Section */}
+          {casts.length > 0 && (
+            <div className="mb-8 p-6 border border-red-500 rounded-xl bg-gray-900 text-white shadow-lg">
+              <h2 className="text-xl font-bold text-red-500 mb-2">Breaking News</h2>
+              <Link href={`/posts/${casts[0].hash}`}>
+                <div className="cursor-pointer hover:bg-gray-800 p-4 rounded-lg">
+                  <p className="font-bold text-lg">{casts[0].text.split('\n')[0]}</p>
+                  {casts[0].text.includes('\n') && (
+                    <p className="text-base mt-2">{casts[0].text.split('\n').slice(1).join('\n')}</p>
+                  )}
+                  <span className="text-sm text-gray-400 block mt-2">
+                    {new Date(casts[0].timestamp).toLocaleString()}
+                  </span>
+                </div>
+              </Link>
+            </div>
+          )}
+          
+          {/* Other Casts */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-min">
-            {casts.length === 0 ? (
-              <p className="text-gray-500 text-center">No casts available.</p>
+            {casts.length <= 1 ? (
+              <p className="text-gray-500 text-center">No more casts available.</p>
             ) : (
-              casts.map((cast) => {
-                // Split text into first paragraph and the rest
+              casts.slice(1).map((cast) => {
                 const [firstParagraph, ...remainingText] = cast.text.split('\n')
-
                 return (
                   <Link href={`/posts/${cast.hash}`} key={cast.hash}>
                     <div className="p-6 border border-purple-500 rounded-xl bg-gray-900 text-white hover:bg-gray-800 cursor-pointer shadow-lg overflow-hidden break-words max-w-full">
-                      {/* First Paragraph: Bold and Larger */}
                       <p className="font-bold text-lg break-words">{firstParagraph}</p>
-                      {/* Remaining text: Normal */}
                       {remainingText.length > 0 && (
                         <p className="text-base mt-2 break-words">{remainingText.join('\n')}</p>
                       )}
