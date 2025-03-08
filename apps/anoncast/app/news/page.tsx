@@ -76,8 +76,8 @@ function Inner() {
           <Loader2 className="animate-spin w-8 h-8 text-white" />
         </div>
       ) : (
-        // 👉 This div forces 1280px width for the grid
-        <div className="w-full max-w-screen-xl mx-auto">
+        // 🚀 Force the grid to ignore layout.tsx and take full width
+        <div className="absolute left-0 right-0 w-full px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {casts.length === 0 ? (
               <p className="text-gray-500 text-center">No casts available.</p>
