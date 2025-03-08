@@ -7,14 +7,17 @@ export function NavTabs() {
   const router = useRouter();
   const pathname = usePathname();
 
+  // Extract tab ID from path (e.g., "/anoncast" → "anoncast")
+  const activeTab = pathname.split("/").filter(Boolean)[0] || "anoncast";
+
   return (
     <AnimatedTabs
       tabs={[
-        { id: "anoncast", label: "Anoncast", href: "/anoncast" },
+        { id: "anoncast", label: "Cast", href: "/anoncast" },
         { id: "news", label: "News", href: "/news" }
       ]}
-      activeTab={pathname}
-      onTabChange={(tab) => router.push(tab)}
+      activeTab={activeTab} // Only "anoncast" or "news", not the full path
+      onTabChange={(tab) => router.push(`/${tab}`)}
       layoutId="main-tabs"
     />
   );
