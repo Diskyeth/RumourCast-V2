@@ -77,7 +77,7 @@ function Inner() {
         </div>
       ) : (
         // 🚀 Force the grid to ignore layout.tsx and use masonry layout
-        <div className="absolute left-0 right-0 w-full">
+        <div className="w-full max-w-screen-xl mx-auto px-8">
           <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">
             {casts.length === 0 ? (
               <p className="text-gray-500 text-center">No casts available.</p>
