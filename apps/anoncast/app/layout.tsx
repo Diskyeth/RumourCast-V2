@@ -7,6 +7,7 @@ import { ConnectButton } from '@/components/connect-button'
 import { Logo } from '@/components/logo'
 import BackToTopButton from '@/components/ui/back-to-top-button'
 import HamburgerMenuButton from '@/components/ui/hamburger-menu-button'
+import { NavTabs } from '@/components/nav-tabs'
 
 export const metadata: Metadata = {
   title: 'RumourCast',
@@ -50,6 +51,7 @@ export default function RootLayout({
             <div className="flex items-center justify-between">
               <Logo />
               <div className="flex items-center gap-8">
+              <NavTabs />
                 <ConnectButton />
                 <HamburgerMenuButton />
               </div>
