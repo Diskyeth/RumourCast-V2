@@ -70,20 +70,24 @@ function Inner() {
   return (
     <div className="p-8">
       {/* Breaking News Section */}
-      {casts.length > 0 && (
-        <div className="mb-8 p-6 border border-red-500 rounded-xl bg-gray-900 text-white shadow-lg">
-          <h2 className="text-xl font-bold text-red-500 mb-2">Breaking News</h2>
-          <Link href={`/posts/${casts[0].hash}`}>
-            <div className="cursor-pointer hover:bg-gray-800 p-4 rounded-lg">
-              <p className="font-bold text-lg">{casts[0].text.split('\n')[0]}</p>
-              {casts[0].text.includes('\n') && (
-                <p className="text-base mt-2">{casts[0].text.split('\n').slice(1).join('\n')}</p>
-              )}
-              <span className="text-sm text-gray-400 block mt-2">
-                {new Date(casts[0].timestamp).toLocaleString()}
-              </span>
+      {casts.length > 1 && (
+        <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[casts[0], casts[1]].map((cast, index) => (
+            <div key={index} className="p-6 border border-red-500 rounded-xl bg-gray-900 text-white shadow-lg">
+              <h2 className="text-xl font-bold text-red-500 mb-2">{index === 0 ? 'Breaking News' : 'Latest Update'}</h2>
+              <Link href={`/posts/${cast.hash}`}>
+                <div className="cursor-pointer hover:bg-gray-800 p-4 rounded-lg">
+                  <p className="font-bold text-lg">{cast.text.split('\n')[0]}</p>
+                  {cast.text.includes('\n') && (
+                    <p className="text-base mt-2">{cast.text.split('\n').slice(1).join('\n')}</p>
+                  )}
+                  <span className="text-sm text-gray-400 block mt-2">
+                    {new Date(cast.timestamp).toLocaleString()}
+                  </span>
+                </div>
+              </Link>
             </div>
-          </Link>
+          ))}
         </div>
       )}
 
@@ -99,7 +103,7 @@ function Inner() {
             {casts.length === 0 ? (
               <p className="text-gray-500 text-center">No casts available.</p>
             ) : (
-              casts.map((cast) => {
+              casts.slice(2).map((cast) => {
                 const [firstParagraph, ...remainingText] = cast.text.split('\n')
                 return (
                   <Link href={`/posts/${cast.hash}`} key={cast.hash}>
