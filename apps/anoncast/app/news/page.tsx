@@ -20,9 +20,16 @@ function Inner() {
   useEffect(() => {
     async function fetchCasts() {
       try {
-        const response = await fetch('https://rumournews-rumournews.up.railway.app/casts') // API to fetch recent casts
+        const response = await fetch('https://news.rumourcast.fun/api/casts', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        })
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`)
+        }
         const data = await response.json()
-        setCasts(data.casts)
+        console.log('Fetched casts:', data) // Debugging
+        setCasts(data.casts || [])
       } catch (error) {
         console.error('Error fetching casts:', error)
       } finally {
@@ -32,13 +39,34 @@ function Inner() {
 
     fetchCasts()
 
-    const eventSource = new EventSource('https://rumournews-rumournews.up.railway.app/webhook') // Webhook for real-time updates
-    eventSource.onmessage = (event) => {
-      const newCast = JSON.parse(event.data)
-      setCasts((prevCasts) => [newCast, ...prevCasts])
+    // Attempt SSE connection
+    let eventSource
+    try {
+      eventSource = new EventSource('https://news.rumourcast.fun/api/casts')
+      eventSource.onmessage = (event) => {
+        try {
+          const newCast = JSON.parse(event.data)
+          console.log('New cast received:', newCast) // Debugging
+          setCasts((prevCasts) => [newCast, ...prevCasts])
+        } catch (error) {
+          console.error('Error parsing SSE data:', error)
+        }
+      }
+      eventSource.onerror = (error) => {
+        console.error('SSE connection error:', error)
+        eventSource.close()
+      }
+    } catch (error) {
+      console.error('Failed to connect to SSE:', error)
     }
 
-    return () => eventSource.close()
+    // Polling fallback every 10 seconds if SSE fails
+    const interval = setInterval(fetchCasts, 10000)
+
+    return () => {
+      if (eventSource) eventSource.close()
+      clearInterval(interval)
+    }
   }, [])
 
   return (
@@ -48,15 +76,21 @@ function Inner() {
         <Loader2 className="animate-spin" />
       ) : (
         <div className="flex flex-col gap-4 rounded-xl">
-          {casts.map((cast) => (
-            <Link href={`/posts/${cast.hash}`} key={cast.hash}>
-              <div className="p-4 border rounded bg-gray-900 text-white hover:bg-gray-800 cursor-pointer">
-                <p className="font-semibold">{cast.username}</p>
-                <p>{cast.text}</p>
-                <span className="text-sm text-gray-400">{new Date(cast.timestamp).toLocaleString()}</span>
-              </div>
-            </Link>
-          ))}
+          {casts.length === 0 ? (
+            <p className="text-gray-500">No casts available.</p>
+          ) : (
+            casts.map((cast) => (
+              <Link href={`/posts/${cast.hash}`} key={cast.hash}>
+                <div className="p-4 border rounded bg-gray-900 text-white hover:bg-gray-800 cursor-pointer">
+                  <p className="font-semibold">{cast.username}</p>
+                  <p>{cast.text}</p>
+                  <span className="text-sm text-gray-400">
+                    {new Date(cast.timestamp).toLocaleString()}
+                  </span>
+                </div>
+              </Link>
+            ))
+          )}
         </div>
       )}
     </div>
