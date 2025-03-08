@@ -78,7 +78,7 @@ function Inner() {
       ) : (
         // 🚀 Maintain full-width div, enforce grid for equal spacing
         <div className="absolute left-0 right-0 w-full px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-min">
             {casts.length === 0 ? (
               <p className="text-gray-500 text-center">No casts available.</p>
             ) : (
