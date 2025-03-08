@@ -88,12 +88,12 @@ function Inner() {
 
                 return (
                   <Link href={`/posts/${cast.hash}`} key={cast.hash}>
-                    <div className="p-6 border border-purple-500 rounded-xl bg-gray-900 text-white hover:bg-gray-800 cursor-pointer shadow-lg">
+                    <div className="p-6 border border-purple-500 rounded-xl bg-gray-900 text-white hover:bg-gray-800 cursor-pointer shadow-lg overflow-hidden break-words max-w-full">
                       {/* First Paragraph: Bold and Larger */}
-                      <p className="font-bold text-lg">{firstParagraph}</p>
+                      <p className="font-bold text-lg break-words">{firstParagraph}</p>
                       {/* Remaining text: Normal */}
                       {remainingText.length > 0 && (
-                        <p className="text-base mt-2">{remainingText.join('\n')}</p>
+                        <p className="text-base mt-2 break-words">{remainingText.join('\n')}</p>
                       )}
                       <span className="text-sm text-gray-400 block mt-2">
                         {new Date(cast.timestamp).toLocaleString()}
