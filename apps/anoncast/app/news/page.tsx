@@ -46,7 +46,7 @@ function Inner() {
         try {
           const newCast = JSON.parse(event.data)
           console.log('New cast received:', newCast) // Debugging
-          setCasts((prevCasts) => [newCast, ...prevCasts])
+          setCasts((prevCasts) => [newCast, ...prevCasts]) // Ensures newest casts go first
         } catch (error) {
           console.error('Error parsing SSE data:', error)
         }
@@ -76,15 +76,15 @@ function Inner() {
           <Loader2 className="animate-spin w-8 h-8 text-white" />
         </div>
       ) : (
-        // 🚀 Maintain full-width div, but enable masonry-like wrapping
+        // 🚀 Maintain full-width div, but use CSS grid for uniform spacing
         <div className="absolute left-0 right-0 w-full px-8">
-          <div className="flex flex-wrap justify-left gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-min">
             {casts.length === 0 ? (
               <p className="text-gray-500 text-center">No casts available.</p>
             ) : (
               casts.map((cast) => (
                 <Link href={`/posts/${cast.hash}`} key={cast.hash}>
-                  <div className="w-[300px] flex-grow break-inside-avoid p-6 border border-purple-500 rounded-xl bg-gray-900 text-white hover:bg-gray-800 cursor-pointer shadow-lg">
+                  <div className="break-inside-avoid p-6 border border-purple-500 rounded-xl bg-gray-900 text-white hover:bg-gray-800 cursor-pointer shadow-lg">
                     <p className="break-words">{cast.text}</p>
                     <span className="text-sm text-gray-400 block mt-2">
                       {new Date(cast.timestamp).toLocaleString()}
