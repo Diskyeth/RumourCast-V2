@@ -71,7 +71,7 @@ function Inner() {
     <div className="p-8">
       {/* Breaking News Section */}
       {casts.length > 1 && (
-        <div className="absolute left-0 right-0 w-full px-8 mb-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
           {[casts[0], casts[1]].map((cast, index) => (
             <div key={index} className="p-6 border border-red-500 rounded-xl bg-gray-900 text-white shadow-lg w-full">
               <h2 className="text-xl font-bold text-red-500 mb-2">{index === 0 ? 'Breaking News' : 'Latest Update'}</h2>
