@@ -76,9 +76,9 @@ function Inner() {
           <Loader2 className="animate-spin w-8 h-8 text-white" />
         </div>
       ) : (
-        // 🚀 Maintain full-width div, but use CSS grid for uniform spacing
+        // 🚀 Maintain full-width div, but use CSS columns for true masonry effect
         <div className="absolute left-0 right-0 w-full px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-min">
+          <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">
             {casts.length === 0 ? (
               <p className="text-gray-500 text-center">No casts available.</p>
             ) : (
