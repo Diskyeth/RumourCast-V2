@@ -43,7 +43,7 @@ export default function AnimatedTabs({
     return (
 <ul
   className={clsx(
-    "relative cursor-pointer px-6 h-14 font-semibold transition-colors flex items-center rounded-full",
+    "relative cursor-pointer px-6 h-12 font-semibold transition-colors flex items-center rounded-full",
     isActive ? "text-zinc-900" : "text-zinc-400"
   )}
   tabIndex={0}
