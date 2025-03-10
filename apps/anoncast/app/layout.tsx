@@ -8,7 +8,7 @@ import { ConnectButton } from '@/components/connect-button'
 import { Logo } from '@/components/logo'
 import BackToTopButton from '@/components/ui/back-to-top-button'
 import HamburgerMenuButton from '@/components/ui/hamburger-menu-button'
-import { Tabs } from '@/components/Tabs'
+import { Tabs } from '@/components/tabs'
 
 export const metadata: Metadata = {
   title: 'RumourCast',
