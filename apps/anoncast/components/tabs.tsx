@@ -11,11 +11,11 @@ export function Tabs() {
   const activeTab = pathname.split("/").filter(Boolean)[0] || "anoncast";
 
   return (
-    <div className="fixed bottom-6 left-6 w-auto bg-black/80 shadow-md rounded-lg gradient-border-wrapper">
+    <div className="fixed bottom-6 left-6 w-auto bg-black/80 shadow-md rounded-lg">
     <AnimatedTabs
       tabs={[
         { id: "anoncast", label: "Cast", href: "/anoncast" },
-        { id: "news", label: "News", href: "/news" }
+        { id: "RumourNews", label: "News", href: "/RumourNews" }
       ]}
       activeTab={activeTab} // Only "anoncast" or "news", not the full path
       onTabChange={(tab) => router.push(`/${tab}`)}
