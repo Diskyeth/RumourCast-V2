@@ -103,7 +103,7 @@ body {
     mask-composite: exclude;
   }
   button.gradient-border-wrapper {
-    background: transparent !important;
+    background: transparent;
     color: white;
   }
 }

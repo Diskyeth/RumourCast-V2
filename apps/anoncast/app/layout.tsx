@@ -8,7 +8,7 @@ import { ConnectButton } from '@/components/connect-button'
 import { Logo } from '@/components/logo'
 import BackToTopButton from '@/components/ui/back-to-top-button'
 import HamburgerMenuButton from '@/components/ui/hamburger-menu-button'
-import { NavTabs } from '@/components/nav-tabs'
+import { Tabs } from '@/components/tabs'
 
 export const metadata: Metadata = {
   title: 'RumourCast',
@@ -49,9 +49,6 @@ export default function RootLayout({
         <header className="sticky top-0 z-50 backdrop-blur-md w-full px-4 xl:px-8 py-4">
   <div className="flex items-center justify-between relative">
     <Logo />
-    <div className="absolute left-1/2 transform -translate-x-1/2">
-      <NavTabs />
-    </div>
     <div className="flex gap-8 items-center">
       <ConnectButton />
       <HamburgerMenuButton />
@@ -63,6 +60,7 @@ export default function RootLayout({
         {children}
 
         <BackToTopButton />
+        <Tabs />
         </Providers>
         <Toaster />
       </body>
