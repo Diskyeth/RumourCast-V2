@@ -1,3 +1,4 @@
+// app/layout.tsx
 import type { Metadata } from 'next'
 import './globals.css'
 import { Providers } from '@/components/providers'
@@ -40,32 +41,31 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+
   return (
     <html lang="en">
-      <body
-        className={`${GeistSans.className} antialiased min-h-screen w-full overflow-x-hidden`}
-      >
-        <Providers>
-          {/* Fixed Header */}
-          <header className="sticky top-0 z-50 backdrop-blur-md w-full px-4 xl:px-8 py-4">
-            <div className="flex items-center justify-between">
-              <Logo />
-              <div className="flex items-center gap-8">
-              <NavTabs />
-                <ConnectButton />
-                <HamburgerMenuButton />
-              </div>
-            </div>
-          </header>
+      <body className={`${GeistSans.className}`}>
+      <Providers>
+        <header className="sticky top-0 z-50 backdrop-blur-md w-full px-4 xl:px-8 py-4">
+  <div className="flex items-center justify-between relative">
+    <Logo />
+    <div className="absolute left-1/2 transform -translate-x-1/2">
+      <NavTabs />
+    </div>
+    <div className="flex gap-8 items-center">
+      <ConnectButton />
+      <HamburgerMenuButton />
+    </div>
 
-          {/* Main Content */}
-          <div className="flex flex-col min-h-screen max-w-screen-sm mx-auto p-4 xl:p-8 gap-8">
-            <main className="flex-1 w-full">{children}</main>
-          </div>
+  </div>
+</header>
+
+        {children}
+
+        <BackToTopButton />
         </Providers>
         <Toaster />
-        <BackToTopButton />
       </body>
     </html>
-  )
+  );
 }
