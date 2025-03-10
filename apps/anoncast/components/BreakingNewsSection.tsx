@@ -3,12 +3,10 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Loader2 } from 'lucide-react'
-import { usePathname } from 'next/navigation'
 
 export function BreakingNewsSection() {
   const [casts, setCasts] = useState([])
   const [loading, setLoading] = useState(true)
-  const pathname = usePathname()
 
   useEffect(() => {
     async function fetchCasts() {

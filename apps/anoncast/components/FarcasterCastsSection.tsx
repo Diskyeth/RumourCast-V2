@@ -7,7 +7,6 @@ import { Loader2 } from 'lucide-react'
 export function FarcasterCastsSection() {
   const [casts, setCasts] = useState([])
   const [loading, setLoading] = useState(true)
-  const pathname = typeof window !== 'undefined' ? window.location.pathname : ''
 
   useEffect(() => {
     async function fetchCasts() {
