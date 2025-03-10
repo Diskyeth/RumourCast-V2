@@ -3,7 +3,6 @@ import { CreatePostProvider } from '@/components/create-post/context'
 import { PostDisplay } from '@/components/post'
 import { useSDK } from '@anonworld/react'
 import { useQuery } from '@tanstack/react-query'
-import PageWidthWrapper from '@/components/PageWidthWrapper'
 
 export default function Page({ params }: { params: { hash: string } }) {
   const { sdk } = useSDK()

@@ -8,7 +8,6 @@ export function FarcasterCastsSection() {
   const [casts, setCasts] = useState([])
   const [loading, setLoading] = useState(true)
   const pathname = typeof window !== 'undefined' ? window.location.pathname : ''
-  const isNewsPage = pathname === '/news'
 
   useEffect(() => {
     async function fetchCasts() {

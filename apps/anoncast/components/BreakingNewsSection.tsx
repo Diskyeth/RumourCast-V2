@@ -9,7 +9,6 @@ export function BreakingNewsSection() {
   const [casts, setCasts] = useState([])
   const [loading, setLoading] = useState(true)
   const pathname = usePathname()
-  const isNewsPage = pathname === '/news'
 
   useEffect(() => {
     async function fetchCasts() {
