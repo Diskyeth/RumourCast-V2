@@ -73,7 +73,7 @@ export function CredentialsSelect({
             onSelect(anonCredentials.find((credential) => credential.id === id) ?? null)
           }
         }}
-        key={open ? '' : 'closed'}
+        key={open ? 'open' : 'closed'}
       >
         <SelectTrigger className="resize-none bg-zinc-950 border border-zinc-700">
           <SelectValue placeholder="Create rumour credential." />

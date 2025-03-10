@@ -8,6 +8,14 @@ body {
   @apply text-foreground;
 }
 
+html, body {
+  height: 100%;
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+  overflow-y: auto;   /* Ensures page can scroll normally */
+  display: flex;
+  flex-direction: column;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -103,7 +111,7 @@ body {
     mask-composite: exclude;
   }
   button.gradient-border-wrapper {
-    background: transparent !important;
+    background: transparent;
     color: white;
   }
 }
@@ -115,3 +123,4 @@ body {
     @apply hover:scale-110 focus:ring-2 focus:ring-[hsl(var(--button-secondary))]/50 transition-all duration-200 transform-gpu;
   }
 }
+

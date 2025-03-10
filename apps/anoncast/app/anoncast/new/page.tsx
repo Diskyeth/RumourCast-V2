@@ -7,8 +7,11 @@ import { CreatePostProvider, useCreatePost } from '@/components/create-post/cont
 
 export default function Home() {
   return (
+    
     <CreatePostProvider initialVariant="anoncast">
-      <Inner />
+ 
+        <Inner />
+
     </CreatePostProvider>
   )
 }
@@ -18,7 +21,6 @@ function Inner() {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">
-
         {variant === 'anoncast' ? (
           <ActionComponent variant="post" />
         ) : (
