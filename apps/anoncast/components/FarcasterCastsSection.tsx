@@ -32,7 +32,7 @@ export function FarcasterCastsSection() {
   }, [])
 
   return (
-    <div className={`w-full mb-12 ${isNewsPage ? 'relative' : ''}`}> {/* Ignore layout settings for /news */}
+    <div className={`w-full mb-12 'relative' : ''}`}> {/* Ignore layout settings for /news */}
       <h1 className="text-3xl font-bold mb-6 text-center">Latest Farcaster Casts</h1>
       {loading ? (
         <div className="flex justify-center">
