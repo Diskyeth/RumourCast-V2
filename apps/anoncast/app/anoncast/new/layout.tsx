@@ -1,5 +1,6 @@
 // app/news/layout.tsx
 import type { ReactNode } from 'react'
+import BackToTopButton from '@/components/ui/back-to-top-button'
 
 export default function NewsLayout({ children }: { children: ReactNode }) {
   return (
@@ -8,3 +9,4 @@ export default function NewsLayout({ children }: { children: ReactNode }) {
   </div>
   );
 }
+<BackToTopButton />

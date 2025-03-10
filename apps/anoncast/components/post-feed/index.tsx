@@ -35,7 +35,7 @@ export function PostFeed({
           activeTab={selected}
           onTabChange={(tab) => {
             setSelected(tab as '🔥 Hot' | '👀 Fresh rumours')
-            router.push(tab === '👀 Fresh rumours' ? '/RumourCast/new' : '/')
+            router.push(tab === '👀 Fresh rumours' ? '/anoncast/new' : '/')
           }}
           layoutId="feed-tabs"
         />

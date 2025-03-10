@@ -6,5 +6,6 @@ export default function NewsLayout({ children }: { children: ReactNode }) {
     <div className="flex flex-col max-w-screen-sm mx-auto gap-8">
     {children}
   </div>
+  
   );
 }
