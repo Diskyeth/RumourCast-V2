@@ -102,51 +102,26 @@ const safeAwait = async <T>(fn: () => Promise<T>): Promise<T | undefined> => {
   }
 }
 
-
 const main = async () => {
-  let i = 0
-  let twitterWaitUntilTimestamp: number | undefined = undefined
   while (true) {
     try {
-      if (i % 2 === 0) {
-        await safeAwait(updateFeeds)
-      }
+      await safeAwait(updateFeeds)
+      await safeAwait(updateTokens)
+      await safeAwait(updateFarcasterAccounts)
+      await safeAwait(updateTwitterAccounts)
+      await safeAwait(updateCommunities)
+      console.log('[leaderboard] updating leaderboard')
+      await safeAwait(updateLeaderboard)
 
-      // We don't have an anonbot equivalent handle currently
+      // Optional: uncomment if needed
       // await safeAwait(handleFarcasterPosts)
-      // On twitter as well
-      // await safeAwait(async () => {
-      //   if (
-      //     twitterWaitUntilTimestamp === undefined ||
-      //     twitterWaitUntilTimestamp < new Date().getTime() / 1000
-      //   ) {
-      //     twitterWaitUntilTimestamp = await handleTwitterPosts()
-      //   } else {
-      //     console.log(
-      //       `[updates] [twitter] waiting for ${twitterWaitUntilTimestamp - new Date().getTime() / 1000} seconds`
-      //     )
-      //   }
-      // })
-
-      if (i % 10 === 0) {
-        await safeAwait(updateTokens)
-      }
-      if (i % 20 === 0) {
-        await safeAwait(updateFarcasterAccounts)
-        await safeAwait(updateTwitterAccounts)
-      }
-      if (i % 100 === 0) {
-        await safeAwait(updateCommunities)
-        console.log('[leaderboard] updating leaderboard')
-        await safeAwait(updateLeaderboard)
-      }
+      // await safeAwait(handleTwitterPosts)
     } catch (error) {
       console.error('[error]', error)
     }
 
-    console.log('[sleep] waiting 30 seconds...')
-    await new Promise((resolve) => setTimeout(resolve, 30000))
-    i++
+    console.log('[sleep] waiting 12 hours...')
+    await new Promise((resolve) => setTimeout(resolve, 12 * 60 * 60 * 1000)) // 12 hours
   }
 }
 
